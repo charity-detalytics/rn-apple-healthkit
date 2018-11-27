@@ -139,6 +139,7 @@
     } mutableCopy];
     if (@available(iOS 11.0, *)) {
       readPerms[@"Vo2Max"] = [HKObjectType quantityTypeForIdentifier:HKQuantityTypeIdentifierVO2Max];
+      readPerms[@"RestingHeartRate"] = [HKObjectType quantityTypeForIdentifier:HKQuantityTypeIdentifierRestingHeartRate];
     }
     return readPerms;
 }

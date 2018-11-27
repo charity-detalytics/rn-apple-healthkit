@@ -5,7 +5,8 @@ let options = {
   startDate: (new Date(2016,4,27)).toISOString(), // required
   endDate: (new Date()).toISOString(), // optional; default now
   ascending: false, // optional; default false
-  limit:10, // optional; default no limit
+  limit: 10, // optional; default no limit
+  resting: true // optional; default to false.
 };
 ```
 

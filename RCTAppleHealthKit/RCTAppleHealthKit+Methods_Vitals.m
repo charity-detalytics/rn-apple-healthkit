@@ -7,7 +7,20 @@
 
 - (void)vitals_getHeartRateSamples:(NSDictionary *)input callback:(RCTResponseSenderBlock)callback
 {
-    HKQuantityType *heartRateType = [HKQuantityType quantityTypeForIdentifier:HKQuantityTypeIdentifierHeartRate];
+    HKQuantityTypeIdentifier identifier;
+    BOOL resting = [[input objectForKey:@"resting"] boolValue];
+    if (resting) {
+      if (@available(iOS 11.0, *)) {
+        identifier = HKQuantityTypeIdentifierRestingHeartRate;
+      } else {
+        callback(@[RCTMakeError(@"Resting heart rate is only available on iOS 11 and above", nil, nil)]);
+        return;
+      }
+    } else {
+      identifier = HKQuantityTypeIdentifierHeartRate;
+    }
+
+    HKQuantityType *heartRateType = [HKQuantityType quantityTypeForIdentifier:identifier];
 
     HKUnit *count = [HKUnit countUnit];
     HKUnit *minute = [HKUnit minuteUnit];
