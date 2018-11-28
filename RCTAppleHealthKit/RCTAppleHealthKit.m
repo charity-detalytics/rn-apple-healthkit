@@ -220,6 +220,11 @@ RCT_EXPORT_METHOD(getBasalEnergyDailySamples:(NSDictionary *)input callback:(RCT
    [self activity_getBasalEnergyDailySamples:input callback:callback];
 }
 
+RCT_EXPORT_METHOD(getActivitySummaries:(NSDictionary *)input callback:(RCTResponseSenderBlock)callback)
+{
+  [self activity_getActivitySummary:input callback:callback];
+}
+
 RCT_EXPORT_METHOD(getBodyTemperatureSamples:(NSDictionary *)input callback:(RCTResponseSenderBlock)callback)
 {
     [self vitals_getBodyTemperatureSamples:input callback:callback];

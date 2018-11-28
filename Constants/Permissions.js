@@ -69,6 +69,7 @@ export const Permissions = {
   Steps: "Steps",
   Weight: "Weight",
   Vo2Max: "Vo2Max",
-  RestingHeartRate: "RestingHeartRate"
+  ActivitySummary: "ActivitySummary",
+  RestingHeartRate: "RestingHeartRate",
   Workout: "Workout",
 }
