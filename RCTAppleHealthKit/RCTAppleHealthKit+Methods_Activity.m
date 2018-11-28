@@ -73,4 +73,49 @@
     
 }
 
+- (void)activity_getActivitySummary:(NSDictionary *)input callback:(RCTResponseSenderBlock)callback {
+  NSCalendar *calendar = [NSCalendar calendarWithIdentifier:NSCalendarIdentifierGregorian];
+  NSDate *startDate = [RCTAppleHealthKit dateFromOptions:input key:@"startDate" withDefault:nil];
+  NSDate *endDate = [RCTAppleHealthKit dateFromOptions:input key:@"endDate" withDefault:[NSDate date]];
+  NSCalendarUnit unit = NSCalendarUnitDay | NSCalendarUnitMonth | NSCalendarUnitYear | NSCalendarUnitEra;
+  NSDateComponents *startDateComponents = [calendar components:unit fromDate:startDate];
+  startDateComponents.calendar = calendar;
+  NSDateComponents *endDateComponents = [calendar components:unit fromDate:endDate];
+  endDateComponents.calendar = calendar;
+  NSPredicate *summariesWithinRange =
+    [HKQuery predicateForActivitySummariesBetweenStartDateComponents:startDateComponents
+                                                   endDateComponents:endDateComponents];
+  HKActivitySummaryQuery *query =
+    [[HKActivitySummaryQuery alloc] initWithPredicate:summariesWithinRange
+                                       resultsHandler:^(HKActivitySummaryQuery * _Nonnull query,
+                                                        NSArray<HKActivitySummary *> * _Nullable activitySummaries,
+                                                        NSError * _Nullable error) {
+
+    if (activitySummaries == nil) {
+      NSString *errStr = [NSString stringWithFormat:@"error getting activity summaries: %@", error];
+      NSLog(errStr);
+      callback(@[RCTMakeError(errStr, nil, nil)]);
+    } else {
+      NSMutableArray *data = [NSMutableArray arrayWithCapacity:1];
+      for (HKActivitySummary *summary in activitySummaries) {
+        NSDateComponents *dateComponents = [summary dateComponentsForCalendar:calendar];
+        NSDate *date = [calendar dateFromComponents:dateComponents];
+        NSString *dateString = [RCTAppleHealthKit buildISO8601StringFromDate:date];
+        double exerciseTime = [summary.appleExerciseTime doubleValueForUnit:[HKUnit minuteUnit]];
+        double standingHours = [summary.appleStandHours doubleValueForUnit:[HKUnit countUnit]];
+        double energyBurned = [summary.activeEnergyBurned doubleValueForUnit:[HKUnit kilocalorieUnit]];
+        NSDictionary *elem = @{
+                               @"exerciseTime": @(exerciseTime),
+                               @"standingHours": @(standingHours),
+                               @"energyBurned": @(energyBurned),
+                               @"date" : dateString
+                               };
+        [data addObject:elem];
+      }
+      callback(@[[NSNull null], data]);
+    }
+  }];
+  [self.healthStore executeQuery:query];
+}
+
 @end
