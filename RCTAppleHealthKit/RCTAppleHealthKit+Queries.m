@@ -503,8 +503,25 @@
     [self.healthStore executeQuery:query];
 }
 
+- (void)fetchCumulativeSumStatisticsCollection:(HKQuantityType *)quantityType
+                                          unit:(HKUnit *)unit
+                                     startDate:(NSDate *)startDate
+                                       endDate:(NSDate *)endDate
+                                     ascending:(BOOL)asc
+                                         limit:(NSUInteger)lim
+                                    completion:(void (^)(NSArray *, NSError *))completionHandler {
+  [self fetchCumulativeSumStatisticsCollection:quantityType
+                                 intervalInMin:1440
+                                          unit:unit
+                                     startDate:startDate
+                                       endDate:endDate
+                                     ascending:asc
+                                         limit:lim
+                                    completion:completionHandler];
+}
 
 - (void)fetchCumulativeSumStatisticsCollection:(HKQuantityType *)quantityType
+                                 intervalInMin:(NSInteger)intervalInMins
                                           unit:(HKUnit *)unit
                                      startDate:(NSDate *)startDate
                                        endDate:(NSDate *)endDate
@@ -514,7 +531,7 @@
 
     NSCalendar *calendar = [NSCalendar currentCalendar];
     NSDateComponents *interval = [[NSDateComponents alloc] init];
-    interval.day = 1;
+    interval.minute = intervalInMins;
 
     NSDateComponents *anchorComponents = [calendar components:NSCalendarUnitDay | NSCalendarUnitMonth | NSCalendarUnitYear
                                                      fromDate:[NSDate date]];

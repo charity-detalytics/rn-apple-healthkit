@@ -43,6 +43,16 @@
                             ascending:(BOOL)asc
                                 limit:(NSUInteger)lim
                            completion:(void (^)(NSArray *, NSError *))completion;
+
+- (void)fetchCumulativeSumStatisticsCollection:(HKQuantityType *)quantityType
+                                 intervalInMin:(NSInteger)intervalInMins
+                                          unit:(HKUnit *)unit
+                                     startDate:(NSDate *)startDate
+                                       endDate:(NSDate *)endDate
+                                     ascending:(BOOL)asc
+                                         limit:(NSUInteger)lim
+                                    completion:(void (^)(NSArray *, NSError *))completionHandler;
+
 - (void)fetchCumulativeSumStatisticsCollection:(HKQuantityType *)quantityType
                                           unit:(HKUnit *)unit
                                      startDate:(NSDate *)startDate
@@ -50,6 +60,7 @@
                                      ascending:(BOOL)asc
                                          limit:(NSUInteger)lim
                                     completion:(void (^)(NSArray *, NSError *))completionHandler;
+
 - (void)fetchCumulativeSumStatisticsCollection:(HKQuantityType *)quantityType
                                           unit:(HKUnit *)unit
                                           period:(NSUInteger)period
@@ -57,12 +68,12 @@
                                        endDate:(NSDate *)endDate
                                      ascending:(BOOL)asc
                                          limit:(NSUInteger)lim
-                                         includeManuallyAdded:(BOOL)includeManuallyAdded
+                          includeManuallyAdded:(BOOL)includeManuallyAdded
                                     completion:(void (^)(NSArray *, NSError *))completionHandler;
 
 
 - (void)fetchSleepCategorySamplesForPredicate:(NSPredicate *)predicate
-                                   limit:(NSUInteger)lim
+                                        limit:(NSUInteger)lim
                                    completion:(void (^)(NSArray *, NSError *))completion;
 
 @end

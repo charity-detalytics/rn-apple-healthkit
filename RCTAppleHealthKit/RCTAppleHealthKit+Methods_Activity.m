@@ -17,6 +17,7 @@
     HKQuantityType *activeEnergyType = [HKQuantityType quantityTypeForIdentifier:HKQuantityTypeIdentifierActiveEnergyBurned];
     NSDate *startDate = [RCTAppleHealthKit dateFromOptions:input key:@"startDate" withDefault:nil];
     NSDate *endDate = [RCTAppleHealthKit dateFromOptions:input key:@"endDate" withDefault:[NSDate date]];
+    NSInteger intervalInMins = [[input objectForKey:@"intervalInMins"] integerValue];
     HKUnit *cal = [HKUnit kilocalorieUnit];
 
     if(startDate == nil){
