@@ -17,6 +17,7 @@
     HKQuantityType *activeEnergyType = [HKQuantityType quantityTypeForIdentifier:HKQuantityTypeIdentifierActiveEnergyBurned];
     NSDate *startDate = [RCTAppleHealthKit dateFromOptions:input key:@"startDate" withDefault:nil];
     NSDate *endDate = [RCTAppleHealthKit dateFromOptions:input key:@"endDate" withDefault:[NSDate date]];
+    NSInteger intervalInMins = [[input objectForKey:@"intervalInMins"] integerValue];
     HKUnit *cal = [HKUnit kilocalorieUnit];
 
     if(startDate == nil){
@@ -25,21 +26,23 @@
     }
     NSPredicate * predicate = [RCTAppleHealthKit predicateForSamplesBetweenDates:startDate endDate:endDate];
 
-    [self fetchQuantitySamplesOfType:activeEnergyType
-                                unit:cal
-                           predicate:predicate
-                           ascending:false
-                               limit:HKObjectQueryNoLimit
-                          completion:^(NSArray *results, NSError *error) {
-                              if(results){
-                                  callback(@[[NSNull null], results]);
-                                  return;
-                              } else {
-                                  NSLog(@"error getting active energy burned samples: %@", error);
-                                  callback(@[RCTMakeError(@"error getting active energy burned samples", nil, nil)]);
-                                  return;
-                              }
-                          }];
+  [self fetchCumulativeSumStatisticsCollection:activeEnergyType
+                                 intervalInMin:intervalInMins
+                                          unit:cal
+                                     startDate:startDate
+                                       endDate:endDate
+                                     ascending:false
+                                         limit:HKObjectQueryNoLimit
+                                    completion:^(NSArray *results, NSError *error) {
+                                      if(results){
+                                        callback(@[[NSNull null], results]);
+                                        return;
+                                      } else {
+                                        NSString *err = [NSString stringWithFormat:@"error getting active energy burned samples: %@", error];
+                                        callback(@[RCTMakeError(err, nil, nil)]);
+                                        return;
+                                      }
+                                    }];
 }
 
 - (void)activity_getBasalEnergyBurned:(NSDictionary *)input callback:(RCTResponseSenderBlock)callback
