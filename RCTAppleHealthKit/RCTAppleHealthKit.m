@@ -18,6 +18,7 @@
 #import "RCTAppleHealthKit+Methods_Results.h"
 #import "RCTAppleHealthKit+Methods_Sleep.h"
 #import "RCTAppleHealthKit+Methods_Mindfulness.h"
+#import "RCTAppleHealthKit+Methods_Workouts.h"
 
 #import <React/RCTBridgeModule.h>
 #import <React/RCTEventDispatcher.h>
@@ -215,6 +216,11 @@ RCT_EXPORT_METHOD(getInfo:(NSDictionary *)input callback:(RCTResponseSenderBlock
 RCT_EXPORT_METHOD(saveMindfulSession:(NSDictionary *)input callback:(RCTResponseSenderBlock)callback)
 {
     [self mindfulness_saveMindfulSession:input callback:callback];
+}
+
+RCT_EXPORT_METHOD(getWorkoutSamples:(NSDictionary *)input callback:(RCTResponseSenderBlock)callback)
+{
+  [self workouts_getWorkoutSamples:input callback:callback];
 }
 
 - (void)isHealthKitAvailable:(RCTResponseSenderBlock)callback
