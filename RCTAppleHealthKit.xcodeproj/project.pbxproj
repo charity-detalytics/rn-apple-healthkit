@@ -20,6 +20,7 @@
 		61232F931E303758000A5026 /* RCTAppleHealthKit+Methods_Mindfulness.m in Sources */ = {isa = PBXBuildFile; fileRef = 61232F921E303758000A5026 /* RCTAppleHealthKit+Methods_Mindfulness.m */; };
 		64C42D4A1D351A8800A0A8F7 /* RCTAppleHealthKit+Methods_Vitals.m in Sources */ = {isa = PBXBuildFile; fileRef = 64C42D491D351A8800A0A8F7 /* RCTAppleHealthKit+Methods_Vitals.m */; };
 		64E0E73F1D37947B00EAB905 /* RCTAppleHealthKit+Methods_Results.m in Sources */ = {isa = PBXBuildFile; fileRef = 64E0E73E1D37947B00EAB905 /* RCTAppleHealthKit+Methods_Results.m */; };
+		B413638D21F583FF00A2A94A /* RCTAppleHealthKit+Methods_Workouts.m in Sources */ = {isa = PBXBuildFile; fileRef = B413638C21F583FF00A2A94A /* RCTAppleHealthKit+Methods_Workouts.m */; };
 		846A98EA215244E7000C3E5D /* RCTAppleHealthKit+Methods_Dietary.m in Sources */ = {isa = PBXBuildFile; fileRef = 846A98E9215244E6000C3E5D /* RCTAppleHealthKit+Methods_Dietary.m */; };
 		C7F88CE6A9E2D530A1CBDFAA /* Pods_RCTAppleHealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C84411FDBEEBD8BA9C43C813 /* Pods_RCTAppleHealthKit.framework */; };
 /* End PBXBuildFile section */
@@ -64,6 +65,8 @@
 		64C42D491D351A8800A0A8F7 /* RCTAppleHealthKit+Methods_Vitals.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "RCTAppleHealthKit+Methods_Vitals.m"; sourceTree = "<group>"; };
 		64E0E73D1D37947B00EAB905 /* RCTAppleHealthKit+Methods_Results.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "RCTAppleHealthKit+Methods_Results.h"; sourceTree = "<group>"; };
 		64E0E73E1D37947B00EAB905 /* RCTAppleHealthKit+Methods_Results.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "RCTAppleHealthKit+Methods_Results.m"; sourceTree = "<group>"; };
+		B413638B21F583FF00A2A94A /* RCTAppleHealthKit+Methods_Workouts.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "RCTAppleHealthKit+Methods_Workouts.h"; sourceTree = "<group>"; };
+		B413638C21F583FF00A2A94A /* RCTAppleHealthKit+Methods_Workouts.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "RCTAppleHealthKit+Methods_Workouts.m"; sourceTree = "<group>"; };
 		846A98E8215244E6000C3E5D /* RCTAppleHealthKit+Methods_Dietary.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "RCTAppleHealthKit+Methods_Dietary.h"; sourceTree = "<group>"; };
 		846A98E9215244E6000C3E5D /* RCTAppleHealthKit+Methods_Dietary.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "RCTAppleHealthKit+Methods_Dietary.m"; sourceTree = "<group>"; };
 		AD8403CE6AF2AAD2D7CEE97E /* Pods-RCTAppleHealthKit.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RCTAppleHealthKit.debug.xcconfig"; path = "Target Support Files/Pods-RCTAppleHealthKit/Pods-RCTAppleHealthKit.debug.xcconfig"; sourceTree = "<group>"; };
@@ -129,6 +132,8 @@
 				377D44F21D247D0A004E35CB /* RCTAppleHealthKit+Methods_Characteristic.m */,
 				37837E7B1DCFE270000201A0 /* RCTAppleHealthKit+Methods_Sleep.h */,
 				37837E7C1DCFE270000201A0 /* RCTAppleHealthKit+Methods_Sleep.m */,
+				B413638B21F583FF00A2A94A /* RCTAppleHealthKit+Methods_Workouts.h */,
+				B413638C21F583FF00A2A94A /* RCTAppleHealthKit+Methods_Workouts.m */,
 			);
 			path = RCTAppleHealthKit;
 			sourceTree = "<group>";
@@ -244,6 +249,7 @@
 				64C42D4A1D351A8800A0A8F7 /* RCTAppleHealthKit+Methods_Vitals.m in Sources */,
 				3774C8931D2092F20000B3F3 /* RCTAppleHealthKit.m in Sources */,
 				377D44F31D247D0A004E35CB /* RCTAppleHealthKit+Methods_Characteristic.m in Sources */,
+				B413638D21F583FF00A2A94A /* RCTAppleHealthKit+Methods_Workouts.m in Sources */,
 				3774C89E1D2095850000B3F3 /* RCTAppleHealthKit+TypesAndPermissions.m in Sources */,
 				3774C8D71D20C65F0000B3F3 /* RCTAppleHealthKit+Methods_Fitness.m in Sources */,
 				58C81E6F1F84F6970005DD48 /* RCTAppleHealthKit+Methods_Activity.m in Sources */,

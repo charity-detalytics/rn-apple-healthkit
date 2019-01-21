@@ -15,6 +15,7 @@
 - (NSDictionary *)writePermsDict;
 - (NSSet *)getReadPermsFromOptions:(NSArray *)options;
 - (NSSet *)getWritePermsFromOptions:(NSArray *)options;
++ (NSDictionary *)getNumberToWorkoutNameDictionary;
 - (HKObjectType *)getWritePermFromString:(NSString *)string;
 - (NSString *)getAuthorizationStatusString:(HKAuthorizationStatus)status;
 
