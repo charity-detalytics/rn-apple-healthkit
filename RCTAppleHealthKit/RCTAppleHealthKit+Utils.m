@@ -224,6 +224,9 @@
       HKUnit *min = [HKUnit minuteUnit];
       theUnit = [ml unitDividedByUnit:[kg unitMultipliedByUnit:min]];
     }
+    if([unitString isEqualToString:@"mcV"]){
+        theUnit = [HKUnit voltUnitWithMetricPrefix:HKMetricPrefixMicro];
+    }
 
     if(theUnit == nil){
         theUnit = defaultValue;

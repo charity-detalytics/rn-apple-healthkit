@@ -113,6 +113,10 @@
         return [HKObjectType workoutType];
     }
 
+    if ([@"ECG" isEqualToString: key] && systemVersion >= 14.0) {
+        return [HKObjectType electrocardiogramType];
+    }
+
     return nil;
 }
 
