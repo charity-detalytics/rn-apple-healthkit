@@ -208,4 +208,88 @@
                         }];
 }
 
+
+- (void)vitals_getEcgSamples:(NSDictionary *)input callback:(RCTResponseSenderBlock)callback {
+    HKElectrocardiogramType *ecgType = [HKObjectType electrocardiogramType];
+    
+    NSDate *startDate = [RCTAppleHealthKit dateFromOptions:input key:@"startDate" withDefault:nil];
+    NSDate *endDate = [RCTAppleHealthKit dateFromOptions:input key:@"endDate" withDefault:[NSDate date]];
+    NSPredicate * predicate = [RCTAppleHealthKit predicateForSamplesBetweenDates:startDate endDate:endDate];
+    
+    NSUInteger limit = [RCTAppleHealthKit uintFromOptions:input key:@"limit" withDefault:HKObjectQueryNoLimit];
+    
+    BOOL ascending = [RCTAppleHealthKit boolFromOptions:input key:@"ascending" withDefault:false];
+    NSSortDescriptor *timeSortDescriptor = [[NSSortDescriptor alloc] initWithKey:HKSampleSortIdentifierEndDate
+                                                                       ascending:ascending];
+    
+    HKSampleQuery *query = [[HKSampleQuery alloc] initWithSampleType:ecgType
+                                                           predicate:predicate
+                                                               limit:limit
+                                                     sortDescriptors:@[timeSortDescriptor]
+                                                      resultsHandler:^(HKSampleQuery *query, NSArray *results, NSError *error) {
+        if (error != nil) {
+            NSLog(@"error with sample query: %@", error);
+            callback(@[RCTMakeError(@"error with sample query", error, nil)]);
+            return;
+        }
+        __block NSMutableArray *data = [NSMutableArray arrayWithCapacity:10];
+        dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
+        dispatch_group_t group = dispatch_group_create();
+        HKUnit *voltUnit = [RCTAppleHealthKit hkUnitFromOptions:input key:@"voltUnit" withDefault:[HKUnit voltUnit]];
+        
+        HKUnit *count = [HKUnit countUnit];
+        HKUnit *minute = [HKUnit minuteUnit];
+        HKUnit *heartRateUnit = [RCTAppleHealthKit hkUnitFromOptions:input key:@"heartRateUnit" withDefault:[count unitDividedByUnit:minute]];
+        
+        for (HKElectrocardiogram *sample in results) {
+            __block NSMutableDictionary *sampleDatum = [NSMutableDictionary new];
+            sampleDatum[@"startDate"] = [RCTAppleHealthKit buildISO8601StringFromDate:sample.startDate];
+            sampleDatum[@"endDate"] = [RCTAppleHealthKit buildISO8601StringFromDate:sample.endDate];
+            sampleDatum[@"sourceId"] = [[[sample sourceRevision] source] bundleIdentifier];
+            sampleDatum[@"sourceName"] = [[[sample sourceRevision] source] name];
+            sampleDatum[@"numberOfVoltageMeasurements"] = @([sample numberOfVoltageMeasurements]);
+            sampleDatum[@"samplingFrequency"] = @([[sample samplingFrequency] doubleValueForUnit:[HKUnit hertzUnit]]);
+            sampleDatum[@"classification"] = @([sample classification]);
+            sampleDatum[@"averageHeartRate"] = @([[sample averageHeartRate] doubleValueForUnit:heartRateUnit]);
+            sampleDatum[@"symptomsStatus"] = @([sample symptomsStatus]);
+            sampleDatum[@"voltageMeasurements"] = [NSMutableArray new];
+            
+            dispatch_group_async(group, queue, ^{
+                dispatch_semaphore_t semaphore = dispatch_semaphore_create(0);
+                
+                NSLog(@"Block START");
+                HKElectrocardiogramQuery *voltageQuery = [[HKElectrocardiogramQuery alloc] initWithElectrocardiogram:sample
+                                                                                                         dataHandler:^(HKElectrocardiogramQuery *query, HKElectrocardiogramVoltageMeasurement *voltageMeasurement, BOOL done, NSError *error) {
+                    if (done) {
+                        NSLog(@"done %@", sample);
+                        [data addObject:sampleDatum];
+                        dispatch_semaphore_signal(semaphore);
+                    } else if (error != nil) {
+                        NSLog(@"err %@", error);
+                        [data addObject:sampleDatum];
+                        dispatch_semaphore_signal(semaphore);
+                    } else {
+                        HKQuantity *voltageQuantity = [voltageMeasurement quantityForLead:HKElectrocardiogramLeadAppleWatchSimilarToLeadI];
+                        [sampleDatum[@"voltageMeasurements"] addObject:@{
+                            @"timeSinceSampleStart": @([voltageMeasurement timeSinceSampleStart]),
+                            @"voltageQuantity": @([voltageQuantity doubleValueForUnit:voltUnit]),
+                        }];
+                    }
+                }];
+                
+                [self.healthStore executeQuery:voltageQuery];
+                dispatch_semaphore_wait(semaphore, DISPATCH_TIME_FOREVER);
+                NSLog(@"Block END");
+            });
+        }
+        
+        dispatch_group_notify(group, queue,^{
+            NSLog(@"FINAL block");
+            callback(@[[NSNull null], data]);
+        });
+    }];
+    
+    [self.healthStore executeQuery:query];
+}
+
 @end

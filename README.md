@@ -108,6 +108,7 @@ Height Example Response
       * [getWeightSamples](/docs/getWeightSamples().md)
       * [getSamples](docs/getSamples().md)
       * [getMindfulSession](docs/getMindfulSession().md)
+      * [getEcgSamples](docs/getEcgSamples().md)
     * Write Methods
       * [saveBmi](/docs/saveBmi().md)
       * [saveHeight](/docs/saveHeight().md)
@@ -148,6 +149,7 @@ The available Healthkit permissions to use with `initHealthKit`
 | Steps                  | [HKQuantityTypeIdentifierSteps](https://developer.apple.com/reference/Healthkit/hkquantitytypeidentifiersteps?language=objc)                                       | ✓    | ✓     |
 | Weight                 | [HKQuantityTypeIdentifierBodyMass](https://developer.apple.com/reference/Healthkit/hkquantitytypeidentifierbodymass?language=objc)                                 | ✓    | ✓     |
 | BodyFatPercentage      | [HKQuantityTypeIdentifierBodyFatPercentage](https://developer.apple.com/reference/Healthkit/hkquantitytypeidentifierbodyfatpercentage?language=objc)                                 | ✓    | ✓     |
+| ECG                    | [HKElectrocardiogramType](https://developer.apple.com/documentation/healthkit/hkelectrocardiogramtype?language=objc)          | ✓    |      |
 
 These permissions are exported as constants of the `rn-apple-healthkit` module.
 
@@ -192,6 +194,7 @@ const healthKitOptions = {
 - percent
 - pound
 - second
+- mcV
 
 
 ## References

@@ -59,8 +59,8 @@
         resultsHandler:^(HKSampleQuery *query, NSArray *results, NSError *error) {
 
             if (error != nil) {
-            NSLog(@"error with fetchCumulativeSumStatisticsCollection: %@", error);
-            callback(@[RCTMakeError(@"error with fetchCumulativeSumStatisticsCollection", error, nil)]);
+            NSLog(@"error with sample query: %@", error);
+            callback(@[RCTMakeError(@"error with sample query", error, nil)]);
             return;
             }
             NSMutableArray *data = [NSMutableArray arrayWithCapacity:(10)];
