@@ -251,6 +251,11 @@ RCT_EXPORT_METHOD(getEcgSamples:(NSDictionary *)input callback:(RCTResponseSende
     [self vitals_getEcgSamples:input callback:callback];
 }
 
+RCT_EXPORT_METHOD(getBloodOxygenSamples:(NSDictionary *)input callback:(RCTResponseSenderBlock)callback)
+{
+    [self vitals_getBloodOxygenSamples:input callback:callback];
+}
+
 RCT_EXPORT_METHOD(getBloodGlucoseSamples:(NSDictionary *)input callback:(RCTResponseSenderBlock)callback)
 {
     [self results_getBloodGlucoseSamples:input callback:callback];

@@ -117,6 +117,10 @@
         return [HKObjectType electrocardiogramType];
     }
 
+    if ([@"BloodOxygen" isEqualToString: key]) {
+        return [HKObjectType quantityTypeForIdentifier:HKQuantityTypeIdentifierOxygenSaturation];
+    }
+
     return nil;
 }
 
