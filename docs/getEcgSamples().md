@@ -1,4 +1,5 @@
 Query for ECG samples. the options object is used to setup a query to retrieve relevant samples.
+Note: This API is only available for iOS 14.
 
 ```javascript
 let options = {
