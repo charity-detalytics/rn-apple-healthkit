@@ -166,10 +166,12 @@
         double exerciseTime = [summary.appleExerciseTime doubleValueForUnit:[HKUnit minuteUnit]];
         double standingHours = [summary.appleStandHours doubleValueForUnit:[HKUnit countUnit]];
         double energyBurned = [summary.activeEnergyBurned doubleValueForUnit:[HKUnit kilocalorieUnit]];
+        double moveTime = [summary.appleMoveTime doubleValueForUnit:[HKUnit minuteUnit]];
         NSDictionary *elem = @{
                                @"exerciseTime": @(exerciseTime),
                                @"standingHours": @(standingHours),
                                @"energyBurned": @(energyBurned),
+                               @"moveTime": @(moveTime),
                                @"date" : dateString
                                };
         [data addObject:elem];
