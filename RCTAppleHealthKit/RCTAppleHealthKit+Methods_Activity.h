@@ -16,5 +16,6 @@
 - (void)activity_getBasalEnergyBurned:(NSDictionary *)input callback:(RCTResponseSenderBlock)callback;
 - (void)activity_getActivitySummary:(NSDictionary *)input callback:(RCTResponseSenderBlock)callback;
 - (void)activity_getBasalEnergyDailySamples:(NSDictionary *)input callback:(RCTResponseSenderBlock)callback;
+- (void)activity_getStandTimeDailySamples:(NSDictionary *)input callback:(RCTResponseSenderBlock)callback;
 
 @end

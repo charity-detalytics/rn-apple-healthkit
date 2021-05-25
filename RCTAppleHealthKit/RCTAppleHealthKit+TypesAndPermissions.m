@@ -121,6 +121,10 @@
         return [HKObjectType quantityTypeForIdentifier:HKQuantityTypeIdentifierOxygenSaturation];
     }
 
+    if ([@"StandTime" isEqualToString:key] && systemVersion >= 13.0) {
+        return [HKObjectType quantityTypeForIdentifier:HKQuantityTypeIdentifierAppleStandTime];
+    }
+
     return nil;
 }
 

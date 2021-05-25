@@ -135,6 +135,38 @@
                                      }];
 }
 
+- (void)activity_getStandTimeDailySamples:(NSDictionary *)input callback:(RCTResponseSenderBlock)callback
+{
+    HKQuantityType *standTimeType = [HKQuantityType quantityTypeForIdentifier:HKQuantityTypeIdentifierAppleStandTime];
+    NSUInteger limit = [RCTAppleHealthKit uintFromOptions:input key:@"limit" withDefault:HKObjectQueryNoLimit];
+    BOOL ascending = [RCTAppleHealthKit boolFromOptions:input key:@"ascending" withDefault:false];
+    NSDate *startDate = [RCTAppleHealthKit dateFromOptions:input key:@"startDate" withDefault:nil];
+    NSDate *endDate = [RCTAppleHealthKit dateFromOptions:input key:@"endDate" withDefault:[NSDate date]];
+    HKUnit *minuteUnit = [HKUnit minuteUnit];
+
+    if(startDate == nil){
+        callback(@[RCTMakeError(@"startDate is required in options", nil, nil)]);
+        return;
+    }
+
+    [self fetchCumulativeSumStatisticsCollection:standTimeType
+                                            unit:minuteUnit
+                                       startDate:startDate
+                                         endDate:endDate
+                                      ascending:ascending
+                                          limit:limit
+                                     completion:^(NSArray *results, NSError *error) {
+                                         if(results){
+                                             callback(@[[NSNull null], results]);
+                                             return;
+                                         } else {
+                                             NSLog(@"error getting stand time daily samples: %@", error);
+                                             callback(@[RCTMakeError(@"error getting stand time daily samples", nil, nil)]);
+                                             return;
+                                         }
+                                     }];
+}
+
 - (void)activity_getActivitySummary:(NSDictionary *)input callback:(RCTResponseSenderBlock)callback {
   NSCalendar *calendar = [NSCalendar calendarWithIdentifier:NSCalendarIdentifierGregorian];
   NSDate *startDate = [RCTAppleHealthKit dateFromOptions:input key:@"startDate" withDefault:nil];
@@ -166,14 +198,18 @@
         double exerciseTime = [summary.appleExerciseTime doubleValueForUnit:[HKUnit minuteUnit]];
         double standingHours = [summary.appleStandHours doubleValueForUnit:[HKUnit countUnit]];
         double energyBurned = [summary.activeEnergyBurned doubleValueForUnit:[HKUnit kilocalorieUnit]];
-        double moveTime = [summary.appleMoveTime doubleValueForUnit:[HKUnit minuteUnit]];
-        NSDictionary *elem = @{
-                               @"exerciseTime": @(exerciseTime),
-                               @"standingHours": @(standingHours),
-                               @"energyBurned": @(energyBurned),
-                               @"moveTime": @(moveTime),
-                               @"date" : dateString
-                               };
+        NSMutableDictionary *elem = [@{
+          @"exerciseTime": @(exerciseTime),
+          @"standingHours": @(standingHours),
+          @"energyBurned": @(energyBurned),
+          @"date" : dateString
+        } mutableCopy];
+
+        if (@available(iOS 14.0, *)) {
+          double moveTime = [summary.appleMoveTime doubleValueForUnit:[HKUnit minuteUnit]];
+          elem[@"moveTime"] = @(moveTime);
+        }
+
         [data addObject:elem];
       }
       callback(@[[NSNull null], data]);
