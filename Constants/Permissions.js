@@ -75,4 +75,5 @@ export const Permissions = {
   Workouts: "Workouts",
   ECG: "ECG",
   BloodOxygen: "BloodOxygen",
+  StandTime: "StandTime",
 }
