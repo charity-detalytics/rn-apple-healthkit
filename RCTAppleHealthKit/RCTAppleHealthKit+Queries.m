@@ -17,7 +17,7 @@
 
 - (void)fetchMostRecentQuantitySampleOfType:(HKQuantityType *)quantityType
                                   predicate:(NSPredicate *)predicate
-                                 completion:(void (^)(HKQuantity *, NSDate *, NSDate *, NSError *))completion {
+                                 completion:(void (^)(HKQuantity *, NSDate *, NSDate *, NSError *, NSString *, NSString *))completion {
 
     NSSortDescriptor *timeSortDescriptor = [[NSSortDescriptor alloc]
             initWithKey:HKSampleSortIdentifierEndDate
@@ -33,7 +33,7 @@
 
                       if (!results) {
                           if (completion) {
-                              completion(nil, nil, nil, error);
+                              completion(nil, nil, nil, nil, nil, error);
                           }
                           return;
                       }
@@ -44,7 +44,9 @@
                           HKQuantity *quantity = quantitySample.quantity;
                           NSDate *startDate = quantitySample.startDate;
                           NSDate *endDate = quantitySample.endDate;
-                          completion(quantity, startDate, endDate, error);
+                          NSString *sourceId = [[[quantitySample sourceRevision] source] bundleIdentifier];
+                          NSString *sourceName = [[[quantitySample sourceRevision] source] name];
+                          completion(quantity, startDate, endDate, sourceId, sourceName, error);
                       }
                 }
     ];
@@ -567,10 +569,19 @@
                                            NSString *startDateString = [RCTAppleHealthKit buildISO8601StringFromDate:startDate];
                                            NSString *endDateString = [RCTAppleHealthKit buildISO8601StringFromDate:endDate];
 
+                                           NSMutableArray *sources = [NSMutableArray arrayWithCapacity:result.sources.count];
+                                           for (HKSource *source in result.sources) {
+                                               [sources addObject:@{
+                                                    @"sourceId": source.bundleIdentifier,
+                                                    @"sourceName": source.name,
+                                               }];
+                                           }
+
                                            NSDictionary *elem = @{
                                                    @"value" : @(value),
                                                    @"startDate" : startDateString,
                                                    @"endDate" : endDateString,
+                                                   @"sources": sources,
                                            };
                                            [data addObject:elem];
                                        }
@@ -643,11 +654,20 @@
 
                                            NSString *startDateString = [RCTAppleHealthKit buildISO8601StringFromDate:startDate];
                                            NSString *endDateString = [RCTAppleHealthKit buildISO8601StringFromDate:endDate];
+                                           
+                                           NSMutableArray *sources = [NSMutableArray arrayWithCapacity:result.sources.count];
+                                           for (HKSource *source in result.sources) {
+                                               [sources addObject:@{
+                                                    @"sourceId": source.bundleIdentifier,
+                                                    @"sourceName": source.name,
+                                               }];
+                                           }
 
                                            NSDictionary *elem = @{
                                                    @"value" : @(value),
                                                    @"startDate" : startDateString,
                                                    @"endDate" : endDateString,
+                                                   @"sources": sources,
                                            };
                                            [data addObject:elem];
                                        }

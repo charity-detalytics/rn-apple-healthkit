@@ -60,7 +60,9 @@
                                                      @"end": endDateString,
                                                      @"swimmingStroke": @(swimmingStroke),
                                                      @"type": [numberToWorkoutNameDictionary objectForKey:type] ?: @"Other",
-                                                     @"energy": @(energy)
+                                                     @"energy": @(energy),
+                                                     @"sourceId": [[[workout sourceRevision] source] bundleIdentifier],
+                                                     @"sourceName": [[[workout sourceRevision] source] name],
                                                      };
                               [workouts addObject:elem];
                             }

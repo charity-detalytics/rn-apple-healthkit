@@ -73,6 +73,8 @@
             NSDictionary *elem = @{
                     @"startDate" : startDateString,
                     @"endDate" : endDateString,
+                    @"sourceId": [[[sample sourceRevision] source] bundleIdentifier],
+                    @"sourceIName": [[[sample sourceRevision] source] name],
             };
 
             [data addObject:elem];

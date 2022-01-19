@@ -22,7 +22,7 @@
     
     [self fetchMostRecentQuantitySampleOfType:weightType
                                     predicate:nil
-                                   completion:^(HKQuantity *mostRecentQuantity, NSDate *startDate, NSDate *endDate, NSError *error) {
+                                   completion:^(HKQuantity *mostRecentQuantity, NSDate *startDate, NSDate *endDate, NSString *sourceId, NSString *sourceName, NSError *error) {
         if (!mostRecentQuantity) {
             callback(@[RCTJSErrorFromNSError(error)]);
         }
@@ -33,6 +33,8 @@
                     @"value" : @(usersWeight),
                     @"startDate" : [RCTAppleHealthKit buildISO8601StringFromDate:startDate],
                     @"endDate" : [RCTAppleHealthKit buildISO8601StringFromDate:endDate],
+                    @"sourceId": sourceId,
+                    @"sourceName": sourceName,
             };
 
             callback(@[[NSNull null], response]);
@@ -99,7 +101,7 @@
 
     [self fetchMostRecentQuantitySampleOfType:bmiType
                                     predicate:nil
-                                   completion:^(HKQuantity *mostRecentQuantity, NSDate *startDate, NSDate *endDate, NSError *error) {
+                                   completion:^(HKQuantity *mostRecentQuantity, NSDate *startDate, NSDate *endDate, NSString *sourceId, NSString *sourceName, NSError *error) {
         if (!mostRecentQuantity) {
             callback(@[RCTJSErrorFromNSError(error)]);
         }
@@ -112,6 +114,8 @@
                     @"value" : @(bmi),
                     @"startDate" : [RCTAppleHealthKit buildISO8601StringFromDate:startDate],
                     @"endDate" : [RCTAppleHealthKit buildISO8601StringFromDate:endDate],
+                    @"sourceId": sourceId,
+                    @"sourceName": sourceName,
             };
 
             callback(@[[NSNull null], response]);
@@ -147,7 +151,7 @@
 
     [self fetchMostRecentQuantitySampleOfType:heightType
                                     predicate:nil
-                                   completion:^(HKQuantity *mostRecentQuantity, NSDate *startDate, NSDate *endDate, NSError *error) {
+                                   completion:^(HKQuantity *mostRecentQuantity, NSDate *startDate, NSDate *endDate, NSString *sourceId, NSString *sourceName, NSError *error) {
         if (!mostRecentQuantity) {
             NSLog(@"error getting latest height: %@", error);
             callback(@[RCTMakeError(@"error getting latest height", error, nil)]);
@@ -160,6 +164,8 @@
                     @"value" : @(height),
                     @"startDate" : [RCTAppleHealthKit buildISO8601StringFromDate:startDate],
                     @"endDate" : [RCTAppleHealthKit buildISO8601StringFromDate:endDate],
+                    @"sourceId": sourceId,
+                    @"sourceName": sourceName,
             };
 
             callback(@[[NSNull null], response]);
@@ -226,7 +232,7 @@
 
     [self fetchMostRecentQuantitySampleOfType:bodyFatPercentType
                                     predicate:nil
-                                   completion:^(HKQuantity *mostRecentQuantity, NSDate *startDate, NSDate *endDate, NSError *error) {
+                                   completion:^(HKQuantity *mostRecentQuantity, NSDate *startDate, NSDate *endDate, NSString *sourceId, NSString *sourceName, NSError *error) {
         if (!mostRecentQuantity) {
             callback(@[RCTJSErrorFromNSError(error)]);
         }
@@ -241,6 +247,8 @@
                     @"value" : @(percentage),
                     @"startDate" : [RCTAppleHealthKit buildISO8601StringFromDate:startDate],
                     @"endDate" : [RCTAppleHealthKit buildISO8601StringFromDate:endDate],
+                    @"sourceId": sourceId,
+                    @"sourceName": sourceName,
             };
 
             callback(@[[NSNull null], response]);
@@ -311,7 +319,7 @@
 
     [self fetchMostRecentQuantitySampleOfType:leanBodyMassType
                                     predicate:nil
-                                   completion:^(HKQuantity *mostRecentQuantity, NSDate *startDate, NSDate *endDate, NSError *error) {
+                                   completion:^(HKQuantity *mostRecentQuantity, NSDate *startDate, NSDate *endDate, NSString *sourceId, NSString *sourceName, NSError *error) {
         if (!mostRecentQuantity) {
             callback(@[RCTJSErrorFromNSError(error)]);
         }
@@ -323,6 +331,8 @@
                     @"value" : @(leanBodyMass),
                     @"startDate" : [RCTAppleHealthKit buildISO8601StringFromDate:startDate],
                     @"endDate" : [RCTAppleHealthKit buildISO8601StringFromDate:endDate],
+                    @"sourceId": sourceId,
+                    @"sourceName": sourceName,
             };
 
             callback(@[[NSNull null], response]);
