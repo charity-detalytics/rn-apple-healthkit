@@ -124,6 +124,8 @@
                                        @"bloodPressureDiastolicValue" : @([bloodPressureDiastolicValue.quantity doubleValueForUnit:unit]),
                                        @"startDate" : [sample valueForKey:@"startDate"],
                                        @"endDate" : [sample valueForKey:@"endDate"],
+                                       @"sourceId": [[[bloodPressureSystolicValue sourceRevision] source] bundleIdentifier],
+                                       @"sourceName": [[[bloodPressureSystolicValue sourceRevision] source] name],
                                       };
 
                 [data addObject:elem];
