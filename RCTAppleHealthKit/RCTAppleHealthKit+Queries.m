@@ -295,8 +295,20 @@
                       case HKCategoryValueSleepAnalysisInBed:
                         valueString = @"INBED";
                       break;
-                      case HKCategoryValueSleepAnalysisAsleep:
-                        valueString = @"ASLEEP";
+                      case HKCategoryValueSleepAnalysisAsleepUnspecified:
+                        valueString = @"ASLEEP_UNSPECIFIED";
+                      break;
+                      case HKCategoryValueSleepAnalysisAsleepREM:
+                        valueString = @"ASLEEP_REM";
+                      break;
+                      case HKCategoryValueSleepAnalysisAsleepCore:
+                        valueString = @"ASLEEP_CORE";
+                      break;
+                      case HKCategoryValueSleepAnalysisAsleepDeep:
+                        valueString = @"ASLEEP_DEEP";
+                      break;
+                      case HKCategoryValueSleepAnalysisAwake:
+                        valueString = @"AWAKE";
                       break;
                      default:
                         valueString = @"UNKNOWN";
