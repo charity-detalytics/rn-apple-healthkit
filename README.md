@@ -109,6 +109,7 @@ Height Example Response
       * [getSamples](docs/getSamples().md)
       * [getMindfulSession](docs/getMindfulSession().md)
       * [getEcgSamples](docs/getEcgSamples().md)
+      * [getAFibBurdenSamples](docs/getAFibBurdenSamples().md)
       * [getBloodOxygenSamples](docs/getBloodOxygenSamples().md)
       * [getStandTimeDailySamples](docs/getStandTimeDailySamples().md)
     * Write Methods
@@ -152,6 +153,7 @@ The available Healthkit permissions to use with `initHealthKit`
 | Weight                 | [HKQuantityTypeIdentifierBodyMass](https://developer.apple.com/reference/Healthkit/hkquantitytypeidentifierbodymass?language=objc)                                 | ✓    | ✓     |
 | BodyFatPercentage      | [HKQuantityTypeIdentifierBodyFatPercentage](https://developer.apple.com/reference/Healthkit/hkquantitytypeidentifierbodyfatpercentage?language=objc)                                 | ✓    | ✓     |
 | ECG                    | [HKElectrocardiogramType](https://developer.apple.com/documentation/healthkit/hkelectrocardiogramtype?language=objc)          | ✓    |      |
+| AFib Burden            | [HKQuantityTypeIdentifierAtrialFibrillationBurden](https://developer.apple.com/documentation/healthkit/hkquantitytypeidentifieratrialfibrillationburden?language=objc)          | ✓    |      |
 | BloodOxygen            | [HKQuantityTypeIdentifierOxygenSaturation](https://developer.apple.com/documentation/healthkit/hkquantitytypeidentifieroxygensaturation?language=objc)          | ✓    |      |
 | StandTime            | [HKQuantityTypeIdentifierAppleStandTime](https://developer.apple.com/documentation/healthkit/hkquantitytypeidentifierapplestandtime?language=objc)          | ✓    |      |
 
