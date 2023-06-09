@@ -125,6 +125,10 @@
         return [HKObjectType quantityTypeForIdentifier:HKQuantityTypeIdentifierAppleStandTime];
     }
 
+    if ([@"AFib" isEqualToString:key] && systemVersion >= 16.0) {
+        return [HKObjectType quantityTypeForIdentifier:HKQuantityTypeIdentifierAtrialFibrillationBurden];
+    }
+
     return nil;
 }
 
