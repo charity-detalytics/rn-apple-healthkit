@@ -8,6 +8,7 @@
 //
 
 #import "RCTAppleHealthKit+Methods_Fitness.h"
+#import "RCTAppleHealthKit+Mutations.h"
 #import "RCTAppleHealthKit+Queries.h"
 #import "RCTAppleHealthKit+Utils.h"
 
@@ -331,6 +332,21 @@
                                           }
                                           callback(@[[NSNull null], arr]);
                                       }];
+}
+
+- (void)fitness_saveDailyDistanceCyclingSamples:(NSArray<NSDictionary *> *)samples callback:(RCTResponseSenderBlock)callback {
+    HKQuantityType *quantityType = [HKQuantityType quantityTypeForIdentifier:HKQuantityTypeIdentifierDistanceCycling];
+    HKUnit *unit = [HKUnit meterUnit];
+    [self saveQuantitySamples:samples
+                 quantityType:quantityType
+                         unit:unit
+                   completion:^(NSError *err) {
+                     if (err != nil) {
+                         callback(@[ RCTJSErrorFromNSError(err) ]);
+                         return;
+                     }
+                     callback(@[ [NSNull null] ]);
+                   }];
 }
 
 - (void)fitness_getFlightsClimbedOnDay:(NSDictionary *)input callback:(RCTResponseSenderBlock)callback
