@@ -43,5 +43,32 @@
     
 }
 
+- (void)sleep_saveSleepSamples:(NSArray<NSDictionary *> *)samples callback:(RCTResponseSenderBlock)callback {
+    NSMutableArray *sampleArray = [NSMutableArray array];
+
+    for (NSDictionary *sampleDict in samples) {
+        NSDate *startDate = [RCTAppleHealthKit dateFromOptions:sampleDict key:@"startDate" withDefault:nil];
+        NSDate *endDate = [RCTAppleHealthKit dateFromOptions:sampleDict key:@"endDate" withDefault:nil];
+        NSString *value = [RCTAppleHealthKit stringFromOptions:sampleDict key:@"value" withDefault:@"INBED"];
+        HKCategoryValueSleepAnalysis valueSleepAnalysis = HKCategoryValueSleepAnalysisAsleepUnspecified;
+        if ([value isEqualToString:@"INBED"]) {
+            valueSleepAnalysis = HKCategoryValueSleepAnalysisInBed;
+        }
+        HKCategoryType *typeSleepAnalysis = [HKCategoryType categoryTypeForIdentifier:HKCategoryTypeIdentifierSleepAnalysis];
+
+        HKCategorySample *sample = [HKCategorySample categorySampleWithType:typeSleepAnalysis value:valueSleepAnalysis startDate:startDate endDate:endDate];
+
+        [sampleArray addObject:sample];
+    }
+
+    [self.healthStore saveObjects:sampleArray
+                   withCompletion:^(BOOL success, NSError *error) {
+                     if (!success) {
+                         callback(@[ RCTJSErrorFromNSError(error) ]);
+                         return;
+                     }
+                     callback(@[ [NSNull null] ]);
+                   }];
+}
 
 @end
