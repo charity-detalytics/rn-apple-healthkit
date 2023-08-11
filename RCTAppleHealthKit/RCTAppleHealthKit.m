@@ -196,6 +196,11 @@ RCT_EXPORT_METHOD(saveDistanceCyclingSamples:(NSArray<NSDictionary *> *)samples 
     [self fitness_saveDistanceCyclingSamples:samples callback:callback];
 }
 
+RCT_EXPORT_METHOD(saveDistanceWalkingRunningSamples:(NSArray<NSDictionary *> *)samples callback:(RCTResponseSenderBlock)callback)
+{
+    [self fitness_saveDistanceWalkingRunningSamples:samples callback:callback];
+}
+
 RCT_EXPORT_METHOD(saveFlightsClimbedSamples:(NSArray<NSDictionary *> *)samples callback:(RCTResponseSenderBlock)callback)
 {
     [self fitness_saveFlightsClimbedSamples:samples callback:callback];

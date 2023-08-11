@@ -374,6 +374,22 @@
                    }];
 }
 
+- (void)fitness_saveDistanceWalkingRunningSamples:(NSArray<NSDictionary *> *)samples callback:(RCTResponseSenderBlock)callback
+{
+    HKQuantityType *quantityType = [HKQuantityType quantityTypeForIdentifier:HKQuantityTypeIdentifierDistanceWalkingRunning];
+    HKUnit *unit = [HKUnit meterUnit];
+    [self saveQuantitySamples:samples
+                 quantityType:quantityType
+                         unit:unit
+                   completion:^(NSError *err) {
+                     if (err != nil) {
+                         callback(@[ RCTJSErrorFromNSError(err) ]);
+                         return;
+                     }
+                     callback(@[ [NSNull null] ]);
+                   }];
+}
+
 - (void)fitness_saveFlightsClimbedSamples:(NSArray<NSDictionary *> *)samples callback:(RCTResponseSenderBlock)callback {
     HKQuantityType *quantityType = [HKQuantityType quantityTypeForIdentifier:HKQuantityTypeIdentifierFlightsClimbed];
     HKUnit *unit = [HKUnit countUnit];
