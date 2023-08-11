@@ -11,5 +11,6 @@
 @interface RCTAppleHealthKit (Methods_Workouts)
 
 - (void)workouts_getWorkoutSamples:(NSDictionary *)input callback:(RCTResponseSenderBlock)callback;
+- (void)workouts_saveSamples:(NSArray<NSDictionary *> *)samples callback:(RCTResponseSenderBlock)callback;
 
 @end
