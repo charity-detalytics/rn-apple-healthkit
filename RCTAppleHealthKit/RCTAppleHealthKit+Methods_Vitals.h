@@ -11,4 +11,7 @@
 - (void)vitals_getBloodOxygenSamples:(NSDictionary *)input callback:(RCTResponseSenderBlock)callback;
 - (void)vitals_getAFibBurdenSamples:(NSDictionary *)input callback:(RCTResponseSenderBlock)callback;
 
+- (void)vitals_saveHeartRateSamples:(NSArray<NSDictionary *> *)samples callback:(RCTResponseSenderBlock)callback;
+- (void)vitals_saveRestingHeartRateSamples:(NSArray<NSDictionary *> *)samples callback:(RCTResponseSenderBlock)callback;
+
 @end

@@ -266,6 +266,12 @@
     if ([@"Workouts" isEqualToString: key]) {
         return [HKObjectType workoutType];
     }
+    if ([@"HeartRate" isEqualToString: key]) {
+        return [HKObjectType quantityTypeForIdentifier:HKQuantityTypeIdentifierHeartRate];
+    }
+    if ([@"RestingHeartRate" isEqualToString: key]) {
+        return [HKObjectType quantityTypeForIdentifier:HKQuantityTypeIdentifierRestingHeartRate];
+    }
     return nil;
 }
 

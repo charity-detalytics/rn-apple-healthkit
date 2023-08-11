@@ -316,6 +316,16 @@ RCT_EXPORT_METHOD(getBloodOxygenSamples:(NSDictionary *)input callback:(RCTRespo
     [self vitals_getBloodOxygenSamples:input callback:callback];
 }
 
+RCT_EXPORT_METHOD(saveHeartRateSamples:(NSArray<NSDictionary *> *)samples callback:(RCTResponseSenderBlock)callback)
+{
+    [self vitals_saveHeartRateSamples:samples callback:callback];
+}
+
+RCT_EXPORT_METHOD(saveRestingHeartRateSamples:(NSArray<NSDictionary *> *)samples callback:(RCTResponseSenderBlock)callback)
+{
+    [self vitals_saveRestingHeartRateSamples:samples callback:callback];
+}
+
 RCT_EXPORT_METHOD(getBloodGlucoseSamples:(NSDictionary *)input callback:(RCTResponseSenderBlock)callback)
 {
     [self results_getBloodGlucoseSamples:input callback:callback];
