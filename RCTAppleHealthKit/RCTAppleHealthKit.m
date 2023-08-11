@@ -331,6 +331,11 @@ RCT_EXPORT_METHOD(getWorkoutSamples:(NSDictionary *)input callback:(RCTResponseS
     [self workouts_getWorkoutSamples:input callback:callback];
 }
 
+RCT_EXPORT_METHOD(saveWorkouts:(NSArray<NSDictionary *> *)samples callback:(RCTResponseSenderBlock)callback)
+{
+    [self workouts_saveSamples:samples callback:callback];
+}
+
 - (void)isHealthKitAvailable:(RCTResponseSenderBlock)callback
 {
     BOOL isAvailable = NO;

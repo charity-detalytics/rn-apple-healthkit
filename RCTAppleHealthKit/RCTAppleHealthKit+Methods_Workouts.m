@@ -71,4 +71,54 @@
   [self.healthStore executeQuery:query];
 }
 
+
+- (void)workouts_saveSamples:(NSArray<NSDictionary *> *)samples callback:(RCTResponseSenderBlock)callback {
+    NSMutableArray *sampleArray = [NSMutableArray array];
+
+    for (NSDictionary *sampleDict in samples) {
+        double duration = [RCTAppleHealthKit doubleFromOptions:sampleDict key:@"duration" withDefault:(double)0];
+        NSDate *start = [RCTAppleHealthKit dateFromOptions:sampleDict key:@"start" withDefault:[NSDate date]];
+        NSDate *end = [RCTAppleHealthKit dateFromOptions:sampleDict key:@"end" withDefault:[NSDate date]];
+        double flightsClimbed = [RCTAppleHealthKit doubleFromOptions:sampleDict key:@"flightsClimbed" withDefault:(double)0];
+        double distance = [RCTAppleHealthKit doubleFromOptions:sampleDict key:@"distance" withDefault:(double)0];
+        double energy = [RCTAppleHealthKit doubleFromOptions:sampleDict key:@"energy" withDefault:(double)0];
+        double swimmingStroke = [RCTAppleHealthKit doubleFromOptions:sampleDict key:@"swimmingStroke" withDefault:(double)0];
+        HKQuantity *totalEnergyBurned = [HKQuantity quantityWithUnit:[HKUnit kilocalorieUnit] doubleValue:energy];
+        HKQuantity *totalDistance = [HKQuantity quantityWithUnit:[HKUnit meterUnit] doubleValue:distance];
+        HKQuantity *totalFlightsClimbed = [HKQuantity quantityWithUnit:[HKUnit countUnit] doubleValue:distance];
+        HKQuantity *totalSwimmingStroke = [HKQuantity quantityWithUnit:[HKUnit countUnit] doubleValue:swimmingStroke];
+        HKWorkout *workout = [HKWorkout workoutWithActivityType:HKWorkoutActivityTypeRunning
+                                                      startDate:start
+                                                        endDate:end
+                                                  workoutEvents:nil
+                                              totalEnergyBurned:totalEnergyBurned
+                                                  totalDistance:totalDistance
+                                            totalFlightsClimbed:totalFlightsClimbed
+                                                         device:nil
+                                                       metadata:nil];
+        [sampleArray addObject:workout];
+
+        workout = [HKWorkout workoutWithActivityType:HKWorkoutActivityTypeSwimming
+                                           startDate:start
+                                             endDate:end
+                                       workoutEvents:nil
+                                   totalEnergyBurned:totalEnergyBurned
+                                       totalDistance:totalDistance
+                            totalSwimmingStrokeCount:totalSwimmingStroke
+                                              device:nil
+                                            metadata:nil];
+
+        [sampleArray addObject:workout];
+    }
+
+    [self.healthStore saveObjects:sampleArray
+                   withCompletion:^(BOOL success, NSError *error) {
+                     if (!success) {
+                         callback(@[ RCTJSErrorFromNSError(error) ]);
+                         return;
+                     }
+                     callback(@[ [NSNull null] ]);
+                   }];
+}
+
 @end
