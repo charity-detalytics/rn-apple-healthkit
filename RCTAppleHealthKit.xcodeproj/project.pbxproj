@@ -25,6 +25,7 @@
 		C7F88CE6A9E2D530A1CBDFAA /* Pods_RCTAppleHealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C84411FDBEEBD8BA9C43C813 /* Pods_RCTAppleHealthKit.framework */; };
 		CA6B40F32D15A157005EE3FC /* RCTAppleHealthKit+TimeInDaylight.m in Sources */ = {isa = PBXBuildFile; fileRef = CA6B40F22D15A157005EE3FC /* RCTAppleHealthKit+TimeInDaylight.m */; };
 		CAD9BD012D170E6700E92CCA /* RCTAppleHealthKit+AudioExposure.m in Sources */ = {isa = PBXBuildFile; fileRef = CAD9BCFF2D170E6700E92CCA /* RCTAppleHealthKit+AudioExposure.m */; };
+		CA4AB0482A8623FE00B0F9AE /* RCTAppleHealthKit+Mutations.m in Sources */ = {isa = PBXBuildFile; fileRef = CA4AB0462A8623FE00B0F9AE /* RCTAppleHealthKit+Mutations.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -77,6 +78,8 @@
 		CA6B40F22D15A157005EE3FC /* RCTAppleHealthKit+TimeInDaylight.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "RCTAppleHealthKit+TimeInDaylight.m"; sourceTree = "<group>"; };
 		CAD9BCFF2D170E6700E92CCA /* RCTAppleHealthKit+AudioExposure.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "RCTAppleHealthKit+AudioExposure.m"; sourceTree = "<group>"; };
 		CAD9BD002D170E6700E92CCA /* RCTAppleHealthKit+AudioExposure.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "RCTAppleHealthKit+AudioExposure.h"; sourceTree = "<group>"; };
+		CA4AB0462A8623FE00B0F9AE /* RCTAppleHealthKit+Mutations.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "RCTAppleHealthKit+Mutations.m"; sourceTree = "<group>"; };
+		CA4AB0472A8623FE00B0F9AE /* RCTAppleHealthKit+Mutations.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "RCTAppleHealthKit+Mutations.h"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -116,6 +119,8 @@
 				CAD9BCFF2D170E6700E92CCA /* RCTAppleHealthKit+AudioExposure.m */,
 				CA6B40F12D15A157005EE3FC /* RCTAppleHealthKit+TimeInDaylight.h */,
 				CA6B40F22D15A157005EE3FC /* RCTAppleHealthKit+TimeInDaylight.m */,
+				CA4AB0472A8623FE00B0F9AE /* RCTAppleHealthKit+Mutations.h */,
+				CA4AB0462A8623FE00B0F9AE /* RCTAppleHealthKit+Mutations.m */,
 				846A98E8215244E6000C3E5D /* RCTAppleHealthKit+Methods_Dietary.h */,
 				846A98E9215244E6000C3E5D /* RCTAppleHealthKit+Methods_Dietary.m */,
 				58C81E6E1F84F6970005DD48 /* RCTAppleHealthKit+Methods_Activity.h */,
@@ -254,6 +259,7 @@
 				3774C8D41D20C6390000B3F3 /* RCTAppleHealthKit+Methods_Body.m in Sources */,
 				61232F931E303758000A5026 /* RCTAppleHealthKit+Methods_Mindfulness.m in Sources */,
 				846A98EA215244E7000C3E5D /* RCTAppleHealthKit+Methods_Dietary.m in Sources */,
+				CA4AB0482A8623FE00B0F9AE /* RCTAppleHealthKit+Mutations.m in Sources */,
 				64E0E73F1D37947B00EAB905 /* RCTAppleHealthKit+Methods_Results.m in Sources */,
 				CAD9BD012D170E6700E92CCA /* RCTAppleHealthKit+AudioExposure.m in Sources */,
 				CA6B40F32D15A157005EE3FC /* RCTAppleHealthKit+TimeInDaylight.m in Sources */,
