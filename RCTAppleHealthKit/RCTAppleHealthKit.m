@@ -186,11 +186,6 @@ RCT_EXPORT_METHOD(getDailyDistanceCyclingSamples:(NSDictionary *)input callback:
     [self fitness_getDailyDistanceCyclingSamples:input callback:callback];
 }
 
-RCT_EXPORT_METHOD(saveDailyDistanceCyclingSamples:(NSArray<NSDictionary *> *)samples callback:(RCTResponseSenderBlock)callback)
-{
-    [self fitness_saveDailyDistanceCyclingSamples:samples callback:callback];
-}
-
 RCT_EXPORT_METHOD(getFlightsClimbed:(NSDictionary *)input callback:(RCTResponseSenderBlock)callback)
 {
     [self fitness_getFlightsClimbedOnDay:input callback:callback];
@@ -199,6 +194,16 @@ RCT_EXPORT_METHOD(getFlightsClimbed:(NSDictionary *)input callback:(RCTResponseS
 RCT_EXPORT_METHOD(getDailyFlightsClimbedSamples:(NSDictionary *)input callback:(RCTResponseSenderBlock)callback)
 {
     [self fitness_getDailyFlightsClimbedSamples:input callback:callback];
+}
+
+RCT_EXPORT_METHOD(saveDistanceCyclingSamples:(NSArray<NSDictionary *> *)samples callback:(RCTResponseSenderBlock)callback)
+{
+    [self fitness_saveDistanceCyclingSamples:samples callback:callback];
+}
+
+RCT_EXPORT_METHOD(saveFlightsClimbedSamples:(NSArray<NSDictionary *> *)samples callback:(RCTResponseSenderBlock)callback)
+{
+    [self fitness_saveFlightsClimbedSamples:samples callback:callback];
 }
 
 RCT_EXPORT_METHOD(saveFood:(NSDictionary *)input callback:(RCTResponseSenderBlock)callback)
