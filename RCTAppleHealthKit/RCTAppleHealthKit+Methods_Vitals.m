@@ -1,4 +1,5 @@
 #import "RCTAppleHealthKit+Methods_Vitals.h"
+#import "RCTAppleHealthKit+Mutations.h"
 #import "RCTAppleHealthKit+Queries.h"
 #import "RCTAppleHealthKit+Utils.h"
 
@@ -355,6 +356,23 @@
                           }];
 }
 
+- (void)vitals_saveHeartRateSamples:(NSArray<NSDictionary *> *)samples callback:(RCTResponseSenderBlock)callback
+{
+    HKQuantityType *quantityType = [HKQuantityType quantityTypeForIdentifier:HKQuantityTypeIdentifierHeartRate];
+    HKUnit *count = [HKUnit countUnit];
+    HKUnit *minute = [HKUnit minuteUnit];
+    HKUnit *unit = [count unitDividedByUnit:minute];
+    [self saveQuantitySamples:samples
+                 quantityType:quantityType
+                         unit:unit
+                   completion:^(NSError *err) {
+                     if (err != nil) {
+                         callback(@[ RCTJSErrorFromNSError(err) ]);
+                         return;
+                     }
+                     callback(@[ [NSNull null] ]);
+                   }];
+}
 
 - (void)vitals_saveRestingHeartRateSamples:(NSArray<NSDictionary *> *)samples callback:(RCTResponseSenderBlock)callback
 {

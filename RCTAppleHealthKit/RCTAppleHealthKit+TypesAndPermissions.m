@@ -263,6 +263,7 @@
     if([@"MindfulSession" isEqualToString:key]) {
         return [HKObjectType categoryTypeForIdentifier:HKCategoryTypeIdentifierMindfulSession];
     }
+    
     if ([@"Workouts" isEqualToString: key]) {
         return [HKObjectType workoutType];
     }
