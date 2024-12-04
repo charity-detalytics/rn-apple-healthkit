@@ -167,6 +167,33 @@
                                      }];
 }
 
+- (void)activity_getFlightSamples:(NSDictionary *)input callback:(RCTResponseSenderBlock)callback {
+    HKQuantityType *flightType = [HKQuantityType quantityTypeForIdentifier:HKQuantityTypeIdentifierFlightsClimbed];
+    HKUnit *unit = [RCTAppleHealthKit hkUnitFromOptions:input key:@"unit" withDefault:[HKUnit countUnit]];
+    NSUInteger limit = [RCTAppleHealthKit uintFromOptions:input key:@"limit" withDefault:HKObjectQueryNoLimit];
+    BOOL ascending = [RCTAppleHealthKit boolFromOptions:input key:@"ascending" withDefault:false];
+    NSDate *startDate = [RCTAppleHealthKit dateFromOptions:input key:@"startDate" withDefault:nil];
+    NSDate *endDate = [RCTAppleHealthKit dateFromOptions:input key:@"endDate" withDefault:[NSDate date]];
+
+    NSPredicate * predicate = [RCTAppleHealthKit predicateForSamplesBetweenDates:startDate endDate:endDate];
+    [self fetchQuantitySamplesOfType:flightType
+                                unit:unit
+                           predicate:predicate
+                           ascending:ascending
+                               limit:limit
+                          completion:^(NSArray *results, NSError *error) {
+                            if(results){
+                              callback(@[[NSNull null], results]);
+                              return;
+                            } else {
+                              NSString *errStr = [NSString stringWithFormat:@"error getting Flight samples: %@", error];
+                              NSLog(@"%@", errStr);
+                              callback(@[RCTMakeError(errStr, nil, nil)]);
+                              return;
+                            }
+                          }];
+  }
+
 - (void)activity_getActivitySummary:(NSDictionary *)input callback:(RCTResponseSenderBlock)callback {
   NSCalendar *calendar = [NSCalendar calendarWithIdentifier:NSCalendarIdentifierGregorian];
   NSDate *startDate = [RCTAppleHealthKit dateFromOptions:input key:@"startDate" withDefault:nil];
