@@ -221,6 +221,11 @@ RCT_EXPORT_METHOD(getBasalEnergyDailySamples:(NSDictionary *)input callback:(RCT
    [self activity_getBasalEnergyDailySamples:input callback:callback];
 }
 
+RCT_EXPORT_METHOD(getDistanceCyclingSamples:(NSDictionary *)input callback:(RCTResponseSenderBlock)callback)
+{
+  [self activity_getDistanceCyclingSamples:input callback:callback];
+}
+
 RCT_EXPORT_METHOD(getDistanceWalkingRunningSamples:(NSDictionary *)input callback:(RCTResponseSenderBlock)callback)
 {
   [self activity_getDistanceWalkingRunningSamples:input callback:callback];
