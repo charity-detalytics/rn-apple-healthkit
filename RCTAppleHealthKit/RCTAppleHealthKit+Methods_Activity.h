@@ -19,6 +19,7 @@
 - (void)activity_getDistanceCyclingSamples:(NSDictionary *)input callback:(RCTResponseSenderBlock)callback;
 - (void)activity_getDistanceWalkingRunningSamples:(NSDictionary *)input callback:(RCTResponseSenderBlock)callback;
 - (void)activity_getFlightSamples:(NSDictionary *)input callback:(RCTResponseSenderBlock)callback;
+- (void)activity_getStandTimeSamples:(NSDictionary *)input callback:(RCTResponseSenderBlock)callback;
 - (void)activity_getStandTimeDailySamples:(NSDictionary *)input callback:(RCTResponseSenderBlock)callback;
 - (void)activity_getStepSamples:(NSDictionary *)input callback:(RCTResponseSenderBlock)callback;
 

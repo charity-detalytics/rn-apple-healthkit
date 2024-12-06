@@ -246,6 +246,11 @@ RCT_EXPORT_METHOD(getActivitySummaries:(NSDictionary *)input callback:(RCTRespon
   [self activity_getActivitySummary:input callback:callback];
 }
 
+RCT_EXPORT_METHOD(getStandTimeSamples:(NSDictionary *)input callback:(RCTResponseSenderBlock)callback)
+{
+  [self activity_getStandTimeSamples:input callback:callback];
+}
+
 RCT_EXPORT_METHOD(getStepSamples:(NSDictionary *)input callback:(RCTResponseSenderBlock)callback)
 {
   [self activity_getStepSamples:input callback:callback];

@@ -168,85 +168,85 @@
 }
 
 - (void)activity_getDistanceCyclingSamples:(NSDictionary *)input callback:(RCTResponseSenderBlock)callback {
-    HKQuantityType *distanceCyclingType = [HKQuantityType quantityTypeForIdentifier:HKQuantityTypeIdentifierDistanceCycling];
-    HKUnit *unit = [RCTAppleHealthKit hkUnitFromOptions:input key:@"unit" withDefault:[HKUnit meterUnit]];
-    NSUInteger limit = [RCTAppleHealthKit uintFromOptions:input key:@"limit" withDefault:HKObjectQueryNoLimit];
-    BOOL ascending = [RCTAppleHealthKit boolFromOptions:input key:@"ascending" withDefault:false];
-    NSDate *startDate = [RCTAppleHealthKit dateFromOptions:input key:@"startDate" withDefault:nil];
-    NSDate *endDate = [RCTAppleHealthKit dateFromOptions:input key:@"endDate" withDefault:[NSDate date]];
+  HKQuantityType *distanceCyclingType = [HKQuantityType quantityTypeForIdentifier:HKQuantityTypeIdentifierDistanceCycling];
+  HKUnit *unit = [RCTAppleHealthKit hkUnitFromOptions:input key:@"unit" withDefault:[HKUnit meterUnit]];
+  NSUInteger limit = [RCTAppleHealthKit uintFromOptions:input key:@"limit" withDefault:HKObjectQueryNoLimit];
+  BOOL ascending = [RCTAppleHealthKit boolFromOptions:input key:@"ascending" withDefault:false];
+  NSDate *startDate = [RCTAppleHealthKit dateFromOptions:input key:@"startDate" withDefault:nil];
+  NSDate *endDate = [RCTAppleHealthKit dateFromOptions:input key:@"endDate" withDefault:[NSDate date]];
 
-    NSPredicate * predicate = [RCTAppleHealthKit predicateForSamplesBetweenDates:startDate endDate:endDate];
-    [self fetchQuantitySamplesOfType:distanceCyclingType
-                                unit:unit
-                           predicate:predicate
-                           ascending:ascending
-                               limit:limit
-                          completion:^(NSArray *results, NSError *error) {
-                            if(results){
-                              callback(@[[NSNull null], results]);
-                              return;
-                            } else {
-                              NSString *errStr = [NSString stringWithFormat:@"error getting Distance Cycling samples: %@", error];
-                              NSLog(@"%@", errStr);
-                              callback(@[RCTMakeError(errStr, nil, nil)]);
-                              return;
-                            }
-                          }];
-  }
+  NSPredicate * predicate = [RCTAppleHealthKit predicateForSamplesBetweenDates:startDate endDate:endDate];
+  [self fetchQuantitySamplesOfType:distanceCyclingType
+                              unit:unit
+                          predicate:predicate
+                          ascending:ascending
+                              limit:limit
+                        completion:^(NSArray *results, NSError *error) {
+                          if(results){
+                            callback(@[[NSNull null], results]);
+                            return;
+                          } else {
+                            NSString *errStr = [NSString stringWithFormat:@"error getting Distance Cycling samples: %@", error];
+                            NSLog(@"%@", errStr);
+                            callback(@[RCTMakeError(errStr, nil, nil)]);
+                            return;
+                          }
+                        }];
+}
 
 - (void)activity_getDistanceWalkingRunningSamples:(NSDictionary *)input callback:(RCTResponseSenderBlock)callback {
-    HKQuantityType *distanceWalkingRunningType = [HKQuantityType quantityTypeForIdentifier:HKQuantityTypeIdentifierDistanceWalkingRunning];
-    HKUnit *unit = [RCTAppleHealthKit hkUnitFromOptions:input key:@"unit" withDefault:[HKUnit meterUnit]];
-    NSUInteger limit = [RCTAppleHealthKit uintFromOptions:input key:@"limit" withDefault:HKObjectQueryNoLimit];
-    BOOL ascending = [RCTAppleHealthKit boolFromOptions:input key:@"ascending" withDefault:false];
-    NSDate *startDate = [RCTAppleHealthKit dateFromOptions:input key:@"startDate" withDefault:nil];
-    NSDate *endDate = [RCTAppleHealthKit dateFromOptions:input key:@"endDate" withDefault:[NSDate date]];
+  HKQuantityType *distanceWalkingRunningType = [HKQuantityType quantityTypeForIdentifier:HKQuantityTypeIdentifierDistanceWalkingRunning];
+  HKUnit *unit = [RCTAppleHealthKit hkUnitFromOptions:input key:@"unit" withDefault:[HKUnit meterUnit]];
+  NSUInteger limit = [RCTAppleHealthKit uintFromOptions:input key:@"limit" withDefault:HKObjectQueryNoLimit];
+  BOOL ascending = [RCTAppleHealthKit boolFromOptions:input key:@"ascending" withDefault:false];
+  NSDate *startDate = [RCTAppleHealthKit dateFromOptions:input key:@"startDate" withDefault:nil];
+  NSDate *endDate = [RCTAppleHealthKit dateFromOptions:input key:@"endDate" withDefault:[NSDate date]];
 
-    NSPredicate * predicate = [RCTAppleHealthKit predicateForSamplesBetweenDates:startDate endDate:endDate];
-    [self fetchQuantitySamplesOfType:distanceWalkingRunningType
-                                unit:unit
-                           predicate:predicate
-                           ascending:ascending
-                               limit:limit
-                          completion:^(NSArray *results, NSError *error) {
-                            if(results){
-                              callback(@[[NSNull null], results]);
-                              return;
-                            } else {
-                              NSString *errStr = [NSString stringWithFormat:@"error getting Distance Walking Running samples: %@", error];
-                              NSLog(@"%@", errStr);
-                              callback(@[RCTMakeError(errStr, nil, nil)]);
-                              return;
-                            }
-                          }];
-  }
+  NSPredicate * predicate = [RCTAppleHealthKit predicateForSamplesBetweenDates:startDate endDate:endDate];
+  [self fetchQuantitySamplesOfType:distanceWalkingRunningType
+                              unit:unit
+                          predicate:predicate
+                          ascending:ascending
+                              limit:limit
+                        completion:^(NSArray *results, NSError *error) {
+                          if(results){
+                            callback(@[[NSNull null], results]);
+                            return;
+                          } else {
+                            NSString *errStr = [NSString stringWithFormat:@"error getting Distance Walking Running samples: %@", error];
+                            NSLog(@"%@", errStr);
+                            callback(@[RCTMakeError(errStr, nil, nil)]);
+                            return;
+                          }
+                        }];
+}
 
 - (void)activity_getFlightSamples:(NSDictionary *)input callback:(RCTResponseSenderBlock)callback {
-    HKQuantityType *flightType = [HKQuantityType quantityTypeForIdentifier:HKQuantityTypeIdentifierFlightsClimbed];
-    HKUnit *unit = [RCTAppleHealthKit hkUnitFromOptions:input key:@"unit" withDefault:[HKUnit countUnit]];
-    NSUInteger limit = [RCTAppleHealthKit uintFromOptions:input key:@"limit" withDefault:HKObjectQueryNoLimit];
-    BOOL ascending = [RCTAppleHealthKit boolFromOptions:input key:@"ascending" withDefault:false];
-    NSDate *startDate = [RCTAppleHealthKit dateFromOptions:input key:@"startDate" withDefault:nil];
-    NSDate *endDate = [RCTAppleHealthKit dateFromOptions:input key:@"endDate" withDefault:[NSDate date]];
+  HKQuantityType *flightType = [HKQuantityType quantityTypeForIdentifier:HKQuantityTypeIdentifierFlightsClimbed];
+  HKUnit *unit = [RCTAppleHealthKit hkUnitFromOptions:input key:@"unit" withDefault:[HKUnit countUnit]];
+  NSUInteger limit = [RCTAppleHealthKit uintFromOptions:input key:@"limit" withDefault:HKObjectQueryNoLimit];
+  BOOL ascending = [RCTAppleHealthKit boolFromOptions:input key:@"ascending" withDefault:false];
+  NSDate *startDate = [RCTAppleHealthKit dateFromOptions:input key:@"startDate" withDefault:nil];
+  NSDate *endDate = [RCTAppleHealthKit dateFromOptions:input key:@"endDate" withDefault:[NSDate date]];
 
-    NSPredicate * predicate = [RCTAppleHealthKit predicateForSamplesBetweenDates:startDate endDate:endDate];
-    [self fetchQuantitySamplesOfType:flightType
-                                unit:unit
-                           predicate:predicate
-                           ascending:ascending
-                               limit:limit
-                          completion:^(NSArray *results, NSError *error) {
-                            if(results){
-                              callback(@[[NSNull null], results]);
-                              return;
-                            } else {
-                              NSString *errStr = [NSString stringWithFormat:@"error getting Flight samples: %@", error];
-                              NSLog(@"%@", errStr);
-                              callback(@[RCTMakeError(errStr, nil, nil)]);
-                              return;
-                            }
-                          }];
-  }
+  NSPredicate * predicate = [RCTAppleHealthKit predicateForSamplesBetweenDates:startDate endDate:endDate];
+  [self fetchQuantitySamplesOfType:flightType
+                              unit:unit
+                          predicate:predicate
+                          ascending:ascending
+                              limit:limit
+                        completion:^(NSArray *results, NSError *error) {
+                          if(results){
+                            callback(@[[NSNull null], results]);
+                            return;
+                          } else {
+                            NSString *errStr = [NSString stringWithFormat:@"error getting Flight samples: %@", error];
+                            NSLog(@"%@", errStr);
+                            callback(@[RCTMakeError(errStr, nil, nil)]);
+                            return;
+                          }
+                        }];
+}
 
 - (void)activity_getActivitySummary:(NSDictionary *)input callback:(RCTResponseSenderBlock)callback {
   NSCalendar *calendar = [NSCalendar calendarWithIdentifier:NSCalendarIdentifierGregorian];
@@ -297,6 +297,33 @@
     }
   }];
   [self.healthStore executeQuery:query];
+}
+    
+- (void)activity_getStandTimeSamples:(NSDictionary *)input callback:(RCTResponseSenderBlock)callback {
+  HKQuantityType *standTimeType = [HKQuantityType quantityTypeForIdentifier:HKQuantityTypeIdentifierAppleStandTime];
+  HKUnit *unit = [RCTAppleHealthKit hkUnitFromOptions:input key:@"unit" withDefault:[HKUnit minuteUnit]];
+  NSUInteger limit = [RCTAppleHealthKit uintFromOptions:input key:@"limit" withDefault:HKObjectQueryNoLimit];
+  BOOL ascending = [RCTAppleHealthKit boolFromOptions:input key:@"ascending" withDefault:false];
+  NSDate *startDate = [RCTAppleHealthKit dateFromOptions:input key:@"startDate" withDefault:nil];
+  NSDate *endDate = [RCTAppleHealthKit dateFromOptions:input key:@"endDate" withDefault:[NSDate date]];
+
+  NSPredicate * predicate = [RCTAppleHealthKit predicateForSamplesBetweenDates:startDate endDate:endDate];
+  [self fetchQuantitySamplesOfType:standTimeType
+                              unit:unit
+                          predicate:predicate
+                          ascending:ascending
+                              limit:limit
+                        completion:^(NSArray *results, NSError *error) {
+                          if(results){
+                            callback(@[[NSNull null], results]);
+                            return;
+                          } else {
+                            NSString *errStr = [NSString stringWithFormat:@"error getting Stand Time samples: %@", error];
+                            NSLog(@"%@", errStr);
+                            callback(@[RCTMakeError(errStr, nil, nil)]);
+                            return;
+                          }
+                        }];
 }
 
 - (void)activity_getStepSamples:(NSDictionary *)input callback:(RCTResponseSenderBlock)callback {
