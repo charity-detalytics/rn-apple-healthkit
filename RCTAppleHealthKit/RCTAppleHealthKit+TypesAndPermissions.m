@@ -128,6 +128,10 @@
     if ([@"AFib" isEqualToString:key] && systemVersion >= 16.0) {
         return [HKObjectType quantityTypeForIdentifier:HKQuantityTypeIdentifierAtrialFibrillationBurden];
     }
+    
+    if ([@"TimeInDaylight" isEqualToString:key] && systemVersion >= 17.0) {
+        return [HKObjectType quantityTypeForIdentifier:HKQuantityTypeIdentifierTimeInDaylight];
+    }
 
     return nil;
 }

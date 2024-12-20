@@ -77,4 +77,5 @@ export const Permissions = {
   BloodOxygen: "BloodOxygen",
   StandTime: "StandTime",
   AFib: "AFib",
+  TimeInDaylight: "TimeInDaylight",
 }
