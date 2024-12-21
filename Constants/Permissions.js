@@ -78,4 +78,5 @@ export const Permissions = {
   StandTime: "StandTime",
   AFib: "AFib",
   TimeInDaylight: "TimeInDaylight",
+  HeadphoneAudioExposure: "HeadphoneAudioExposure",
 }

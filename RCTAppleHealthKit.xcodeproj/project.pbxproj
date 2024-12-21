@@ -24,6 +24,7 @@
 		B413638D21F583FF00A2A94A /* RCTAppleHealthKit+Methods_Workouts.m in Sources */ = {isa = PBXBuildFile; fileRef = B413638C21F583FF00A2A94A /* RCTAppleHealthKit+Methods_Workouts.m */; };
 		C7F88CE6A9E2D530A1CBDFAA /* Pods_RCTAppleHealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C84411FDBEEBD8BA9C43C813 /* Pods_RCTAppleHealthKit.framework */; };
 		CA6B40F32D15A157005EE3FC /* RCTAppleHealthKit+TimeInDaylight.m in Sources */ = {isa = PBXBuildFile; fileRef = CA6B40F22D15A157005EE3FC /* RCTAppleHealthKit+TimeInDaylight.m */; };
+		CAD9BD012D170E6700E92CCA /* RCTAppleHealthKit+AudioExposure.m in Sources */ = {isa = PBXBuildFile; fileRef = CAD9BCFF2D170E6700E92CCA /* RCTAppleHealthKit+AudioExposure.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -74,6 +75,8 @@
 		C84411FDBEEBD8BA9C43C813 /* Pods_RCTAppleHealthKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RCTAppleHealthKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		CA6B40F12D15A157005EE3FC /* RCTAppleHealthKit+TimeInDaylight.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "RCTAppleHealthKit+TimeInDaylight.h"; sourceTree = "<group>"; };
 		CA6B40F22D15A157005EE3FC /* RCTAppleHealthKit+TimeInDaylight.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "RCTAppleHealthKit+TimeInDaylight.m"; sourceTree = "<group>"; };
+		CAD9BCFF2D170E6700E92CCA /* RCTAppleHealthKit+AudioExposure.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "RCTAppleHealthKit+AudioExposure.m"; sourceTree = "<group>"; };
+		CAD9BD002D170E6700E92CCA /* RCTAppleHealthKit+AudioExposure.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "RCTAppleHealthKit+AudioExposure.h"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -109,6 +112,8 @@
 		3774C88F1D2092F20000B3F3 /* RCTAppleHealthKit */ = {
 			isa = PBXGroup;
 			children = (
+				CAD9BD002D170E6700E92CCA /* RCTAppleHealthKit+AudioExposure.h */,
+				CAD9BCFF2D170E6700E92CCA /* RCTAppleHealthKit+AudioExposure.m */,
 				CA6B40F12D15A157005EE3FC /* RCTAppleHealthKit+TimeInDaylight.h */,
 				CA6B40F22D15A157005EE3FC /* RCTAppleHealthKit+TimeInDaylight.m */,
 				846A98E8215244E6000C3E5D /* RCTAppleHealthKit+Methods_Dietary.h */,
@@ -250,6 +255,7 @@
 				61232F931E303758000A5026 /* RCTAppleHealthKit+Methods_Mindfulness.m in Sources */,
 				846A98EA215244E7000C3E5D /* RCTAppleHealthKit+Methods_Dietary.m in Sources */,
 				64E0E73F1D37947B00EAB905 /* RCTAppleHealthKit+Methods_Results.m in Sources */,
+				CAD9BD012D170E6700E92CCA /* RCTAppleHealthKit+AudioExposure.m in Sources */,
 				CA6B40F32D15A157005EE3FC /* RCTAppleHealthKit+TimeInDaylight.m in Sources */,
 				64C42D4A1D351A8800A0A8F7 /* RCTAppleHealthKit+Methods_Vitals.m in Sources */,
 				3774C8931D2092F20000B3F3 /* RCTAppleHealthKit.m in Sources */,

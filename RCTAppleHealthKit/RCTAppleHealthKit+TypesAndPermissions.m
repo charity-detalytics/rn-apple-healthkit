@@ -132,6 +132,10 @@
     if ([@"TimeInDaylight" isEqualToString:key] && systemVersion >= 17.0) {
         return [HKObjectType quantityTypeForIdentifier:HKQuantityTypeIdentifierTimeInDaylight];
     }
+    
+    if ([@"HeadphoneAudioExposure" isEqualToString:key]) {
+        return [HKObjectType quantityTypeForIdentifier:HKQuantityTypeIdentifierHeadphoneAudioExposure];
+    }
 
     return nil;
 }
