@@ -45,6 +45,11 @@ RCT_EXPORT_METHOD(initStepCountObserver:(NSDictionary *)input callback:(RCTRespo
     [self fitness_initializeStepEventObserver:input callback:callback];
 }
 
+RCT_EXPORT_METHOD(getEnvironmentalAudioExposureSamples:(NSDictionary *)input callback:(RCTResponseSenderBlock)callback)
+{
+    [self getEnvironmentalAudioExposureSamples:input callback:callback];
+}
+
 RCT_EXPORT_METHOD(getHeadphoneAudioExposureSamples:(NSDictionary *)input callback:(RCTResponseSenderBlock)callback)
 {
     [self getHeadphoneAudioExposureSamples:input callback:callback];
