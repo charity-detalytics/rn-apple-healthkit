@@ -273,6 +273,9 @@
     if ([@"RestingHeartRate" isEqualToString: key]) {
         return [HKObjectType quantityTypeForIdentifier:HKQuantityTypeIdentifierRestingHeartRate];
     }
+    if ([@"EnvironmentalAudioExposure" isEqualToString: key]) {
+        return [HKObjectType quantityTypeForIdentifier:HKQuantityTypeIdentifierEnvironmentalAudioExposure];
+    }
     return nil;
 }
 

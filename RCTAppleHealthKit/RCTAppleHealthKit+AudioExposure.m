@@ -1,5 +1,6 @@
 #import "RCTAppleHealthKit+AudioExposure.h"
 #import "RCTAppleHealthKit+Queries.h"
+#import "RCTAppleHealthKit+Mutations.h"
 #import "RCTAppleHealthKit+Utils.h"
 
 @implementation RCTAppleHealthKit (AudioExposure)
@@ -29,6 +30,21 @@
                             return;
                           }
                         }];
+}
+
+- (void)saveEnvironmentalAudioExposureSamples:(NSArray<NSDictionary *> *)samples callback:(RCTResponseSenderBlock)callback {
+    HKQuantityType *quantityType = [HKQuantityType quantityTypeForIdentifier:HKQuantityTypeIdentifierEnvironmentalAudioExposure];
+    HKUnit *unit = [HKUnit decibelAWeightedSoundPressureLevelUnit];
+    [self saveQuantitySamples:samples
+                 quantityType:quantityType
+                         unit:unit
+                   completion:^(NSError *err) {
+                     if (err != nil) {
+                         callback(@[ RCTJSErrorFromNSError(err) ]);
+                         return;
+                     }
+                     callback(@[ [NSNull null] ]);
+                   }];
 }
 
 @end
