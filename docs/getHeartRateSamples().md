@@ -6,7 +6,8 @@ let options = {
   endDate: (new Date()).toISOString(), // optional; default now
   ascending: false, // optional; default false
   limit: 10, // optional; default no limit
-  resting: true // optional; default to false.
+  resting: true, // optional; default to false.
+  includeManuallyAdded: false, // optional; default false (set true to include user-entered data)
 };
 ```
 

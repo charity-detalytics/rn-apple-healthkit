@@ -5,6 +5,7 @@ let options = {
   startDate: (new Date(2016,4,27)).toISOString(),
   endDate: (new Date()).toISOString(),
   type: 'Walking', // one of: ['Walking', 'StairClimbing', 'Running', 'Cycling', 'Workout']
+  includeManuallyAdded: false, // optional; default false (set true to include user-entered data)
 };
 ```
 

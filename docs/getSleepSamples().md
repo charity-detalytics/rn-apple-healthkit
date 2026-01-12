@@ -13,6 +13,7 @@ let options = {
   startDate: (new Date(2016,10,1)).toISOString(), // required
   endDate: (new Date()).toISOString(), // optional; default now
   limit:10, // optional; default no limit
+  includeManuallyAdded: false, // optional; default false (set true to include user-entered data)
 };
 ```
 

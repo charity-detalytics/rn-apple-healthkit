@@ -105,6 +105,7 @@ Height Example Response
       * [getSleepSamples](/docs/getSleepSamples().md)
       * [getVo2MaxSamples](/docs/getVo2MaxSamples().md)
       * [getStepCount](/docs/getStepCount().md)
+      * [getWorkoutSamples](/docs/getWorkoutSamples().md)
       * [getWeightSamples](/docs/getWeightSamples().md)
       * [getSamples](docs/getSamples().md)
       * [getMindfulSession](docs/getMindfulSession().md)
