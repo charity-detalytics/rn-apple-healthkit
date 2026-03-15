@@ -13,6 +13,15 @@
 #import <React/RCTBridgeModule.h>
 #import <React/RCTEventDispatcher.h>
 
+static dispatch_queue_t RCTAppleHealthKitSerializationQueue(void) {
+    static dispatch_queue_t queue;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        queue = dispatch_queue_create("com.detalytics.rnapplehealthkit.serialization", DISPATCH_QUEUE_SERIAL);
+    });
+    return queue;
+}
+
 @implementation RCTAppleHealthKit (Queries)
 
 - (void)fetchMostRecentQuantitySampleOfType:(HKQuantityType *)quantityType
@@ -77,7 +86,7 @@
         if (completion) {
             NSMutableArray *data = [NSMutableArray arrayWithCapacity:1];
 
-            dispatch_async(dispatch_get_main_queue(), ^{
+            dispatch_async(RCTAppleHealthKitSerializationQueue(), ^{
 
                 for (HKQuantitySample *sample in results) {
                     HKQuantity *quantity = sample.quantity;
@@ -134,7 +143,7 @@
         if (completion) {
             NSMutableArray *data = [NSMutableArray arrayWithCapacity:1];
 
-            dispatch_async(dispatch_get_main_queue(), ^{
+            dispatch_async(RCTAppleHealthKitSerializationQueue(), ^{
                 if (type == [HKObjectType workoutType]) {
                     for (HKWorkout *sample in results) {
                         double energy =  [[sample totalEnergyBurned] doubleValueForUnit:[HKUnit kilocalorieUnit]];
@@ -276,7 +285,7 @@
         if (completion) {
             NSMutableArray *data = [NSMutableArray arrayWithCapacity:1];
 
-            dispatch_async(dispatch_get_main_queue(), ^{
+            dispatch_async(RCTAppleHealthKitSerializationQueue(), ^{
 
                 for (HKCategorySample *sample in results) {
 
@@ -393,7 +402,7 @@
         if (completion) {
             NSMutableArray *data = [NSMutableArray arrayWithCapacity:1];
 
-            dispatch_async(dispatch_get_main_queue(), ^{
+            dispatch_async(RCTAppleHealthKitSerializationQueue(), ^{
 
                 for (HKCorrelation *sample in results) {
                     NSString *startDateString = [RCTAppleHealthKit buildISO8601StringFromDate:sample.startDate];
