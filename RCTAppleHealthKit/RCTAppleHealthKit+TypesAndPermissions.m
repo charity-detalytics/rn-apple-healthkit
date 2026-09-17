@@ -105,6 +105,10 @@
         return [HKObjectType quantityTypeForIdentifier:HKQuantityTypeIdentifierRestingHeartRate];
     }
 
+    if ([@"HeartRateVariability" isEqualToString: key] && systemVersion >= 11.0) {
+        return [HKObjectType quantityTypeForIdentifier:HKQuantityTypeIdentifierHeartRateVariabilitySDNN];
+    }
+
     if ([@"ActivitySummary" isEqualToString: key]) {
         return [HKObjectType activitySummaryType];
     }
