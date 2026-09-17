@@ -286,6 +286,11 @@ RCT_EXPORT_METHOD(getRespiratoryRateSamples:(NSDictionary *)input callback:(RCTR
     [self vitals_getRespiratoryRateSamples:input callback:callback];
 }
 
+RCT_EXPORT_METHOD(getHeartRateVariabilitySamples:(NSDictionary *)input callback:(RCTResponseSenderBlock)callback)
+{
+    [self vitals_getHeartRateVariabilitySamples:input callback:callback];
+}
+
 RCT_EXPORT_METHOD(getVo2MaxSamples:(NSDictionary *)input callback:(RCTResponseSenderBlock)callback)
 {
     [self vitals_getVo2MaxSamples:input callback:callback];
