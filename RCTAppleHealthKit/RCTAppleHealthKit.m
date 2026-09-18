@@ -331,6 +331,11 @@ RCT_EXPORT_METHOD(saveHeartRateSamples:(NSArray<NSDictionary *> *)samples callba
     [self vitals_saveHeartRateSamples:samples callback:callback];
 }
 
+RCT_EXPORT_METHOD(saveHeartRateVariabilitySamples:(NSArray<NSDictionary *> *)samples callback:(RCTResponseSenderBlock)callback)
+{
+    [self vitals_saveHeartRateVariabilitySamples:samples callback:callback];
+}
+
 RCT_EXPORT_METHOD(saveRestingHeartRateSamples:(NSArray<NSDictionary *> *)samples callback:(RCTResponseSenderBlock)callback)
 {
     [self vitals_saveRestingHeartRateSamples:samples callback:callback];

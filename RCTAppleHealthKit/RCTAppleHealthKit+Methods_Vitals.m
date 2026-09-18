@@ -411,6 +411,22 @@
                    }];
 }
 
+- (void)vitals_saveHeartRateVariabilitySamples:(NSArray<NSDictionary *> *)samples callback:(RCTResponseSenderBlock)callback
+{
+    HKQuantityType *quantityType = [HKQuantityType quantityTypeForIdentifier:HKQuantityTypeIdentifierHeartRateVariabilitySDNN];
+    HKUnit *unit = [HKUnit secondUnitWithMetricPrefix:HKMetricPrefixMilli];
+    [self saveQuantitySamples:samples
+                 quantityType:quantityType
+                         unit:unit
+                   completion:^(NSError *err) {
+                     if (err != nil) {
+                         callback(@[ RCTJSErrorFromNSError(err) ]);
+                         return;
+                     }
+                     callback(@[ [NSNull null] ]);
+                   }];
+}
+
 - (void)vitals_saveRestingHeartRateSamples:(NSArray<NSDictionary *> *)samples callback:(RCTResponseSenderBlock)callback
 {
     HKQuantityType *quantityType = [HKQuantityType quantityTypeForIdentifier:HKQuantityTypeIdentifierRestingHeartRate];
