@@ -8,6 +8,7 @@
 //
 
 #import "RCTAppleHealthKit+Methods_Fitness.h"
+#import "RCTAppleHealthKit+Mutations.h"
 #import "RCTAppleHealthKit+Queries.h"
 #import "RCTAppleHealthKit+Utils.h"
 
@@ -128,33 +129,6 @@
         callback(@[[NSNull null], arr]);
     }];
 }
-
-
-- (void)fitness_saveSteps:(NSDictionary *)input callback:(RCTResponseSenderBlock)callback
-{
-    double value = [RCTAppleHealthKit doubleFromOptions:input key:@"value" withDefault:(double)0];
-    NSDate *startDate = [RCTAppleHealthKit dateFromOptions:input key:@"startDate" withDefault:nil];
-    NSDate *endDate = [RCTAppleHealthKit dateFromOptions:input key:@"endDate" withDefault:[NSDate date]];
-
-    if(startDate == nil || endDate == nil){
-        callback(@[RCTMakeError(@"startDate and endDate are required in options", nil, nil)]);
-        return;
-    }
-
-    HKUnit *unit = [HKUnit countUnit];
-    HKQuantity *quantity = [HKQuantity quantityWithUnit:unit doubleValue:value];
-    HKQuantityType *type = [HKQuantityType quantityTypeForIdentifier:HKQuantityTypeIdentifierStepCount];
-    HKQuantitySample *sample = [HKQuantitySample quantitySampleWithType:type quantity:quantity startDate:startDate endDate:endDate];
-
-    [self.healthStore saveObject:sample withCompletion:^(BOOL success, NSError *error) {
-        if (!success) {
-            callback(@[RCTJSErrorFromNSError(error)]);
-            return;
-        }
-        callback(@[[NSNull null], @(value)]);
-    }];
-}
-
 
 - (void)fitness_initializeStepEventObserver:(NSDictionary *)input callback:(RCTResponseSenderBlock)callback
 {
@@ -383,6 +357,68 @@
                                           }
                                           callback(@[[NSNull null], arr]);
                                       }];
+}
+
+- (void)fitness_saveDistanceCyclingSamples:(NSArray<NSDictionary *> *)samples callback:(RCTResponseSenderBlock)callback {
+    HKQuantityType *quantityType = [HKQuantityType quantityTypeForIdentifier:HKQuantityTypeIdentifierDistanceCycling];
+    HKUnit *unit = [HKUnit meterUnit];
+    [self saveQuantitySamples:samples
+                 quantityType:quantityType
+                         unit:unit
+                   completion:^(NSError *err) {
+                     if (err != nil) {
+                         callback(@[ RCTJSErrorFromNSError(err) ]);
+                         return;
+                     }
+                     callback(@[ [NSNull null] ]);
+                   }];
+}
+
+- (void)fitness_saveDistanceWalkingRunningSamples:(NSArray<NSDictionary *> *)samples callback:(RCTResponseSenderBlock)callback
+{
+    HKQuantityType *quantityType = [HKQuantityType quantityTypeForIdentifier:HKQuantityTypeIdentifierDistanceWalkingRunning];
+    HKUnit *unit = [HKUnit meterUnit];
+    [self saveQuantitySamples:samples
+                 quantityType:quantityType
+                         unit:unit
+                   completion:^(NSError *err) {
+                     if (err != nil) {
+                         callback(@[ RCTJSErrorFromNSError(err) ]);
+                         return;
+                     }
+                     callback(@[ [NSNull null] ]);
+                   }];
+}
+
+- (void)fitness_saveFlightsClimbedSamples:(NSArray<NSDictionary *> *)samples callback:(RCTResponseSenderBlock)callback {
+    HKQuantityType *quantityType = [HKQuantityType quantityTypeForIdentifier:HKQuantityTypeIdentifierFlightsClimbed];
+    HKUnit *unit = [HKUnit countUnit];
+    [self saveQuantitySamples:samples
+                 quantityType:quantityType
+                         unit:unit
+                   completion:^(NSError *err) {
+                     if (err != nil) {
+                         callback(@[ RCTJSErrorFromNSError(err) ]);
+                         return;
+                     }
+                     callback(@[ [NSNull null] ]);
+                   }];
+}
+
+- (void)fitness_saveStepSamples:(NSArray<NSDictionary *> *)samples callback:(RCTResponseSenderBlock)callback
+{
+    HKQuantityType *quantityType = [HKQuantityType quantityTypeForIdentifier:HKQuantityTypeIdentifierStepCount];
+    HKUnit *unit = [HKUnit countUnit];
+    [self saveQuantitySamples:samples
+                 quantityType:quantityType
+                         unit:unit
+                   completion:^(NSError *err) {
+                     if (err != nil) {
+                         callback(@[ RCTJSErrorFromNSError(err) ]);
+                         return;
+                     }
+                     callback(@[ [NSNull null] ]);
+                   }];
 }
 
 @end

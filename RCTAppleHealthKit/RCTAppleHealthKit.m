@@ -161,11 +161,6 @@ RCT_EXPORT_METHOD(getDailyStepCountSamples:(NSDictionary *)input callback:(RCTRe
     [self fitness_getDailyStepSamples:input callback:callback];
 }
 
-RCT_EXPORT_METHOD(saveSteps:(NSDictionary *)input callback:(RCTResponseSenderBlock)callback)
-{
-    [self fitness_saveSteps:input callback:callback];
-}
-
 RCT_EXPORT_METHOD(getDistanceWalkingRunning:(NSDictionary *)input callback:(RCTResponseSenderBlock)callback)
 {
     [self fitness_getDistanceWalkingRunningOnDay:input callback:callback];
@@ -199,6 +194,26 @@ RCT_EXPORT_METHOD(getFlightsClimbed:(NSDictionary *)input callback:(RCTResponseS
 RCT_EXPORT_METHOD(getDailyFlightsClimbedSamples:(NSDictionary *)input callback:(RCTResponseSenderBlock)callback)
 {
     [self fitness_getDailyFlightsClimbedSamples:input callback:callback];
+}
+
+RCT_EXPORT_METHOD(saveDistanceCyclingSamples:(NSArray<NSDictionary *> *)samples callback:(RCTResponseSenderBlock)callback)
+{
+    [self fitness_saveDistanceCyclingSamples:samples callback:callback];
+}
+
+RCT_EXPORT_METHOD(saveDistanceWalkingRunningSamples:(NSArray<NSDictionary *> *)samples callback:(RCTResponseSenderBlock)callback)
+{
+    [self fitness_saveDistanceWalkingRunningSamples:samples callback:callback];
+}
+
+RCT_EXPORT_METHOD(saveFlightsClimbedSamples:(NSArray<NSDictionary *> *)samples callback:(RCTResponseSenderBlock)callback)
+{
+    [self fitness_saveFlightsClimbedSamples:samples callback:callback];
+}
+
+RCT_EXPORT_METHOD(saveStepSamples:(NSArray<NSDictionary *> *)samples callback:(RCTResponseSenderBlock)callback)
+{
+    [self fitness_saveStepSamples:samples callback:callback];
 }
 
 RCT_EXPORT_METHOD(saveFood:(NSDictionary *)input callback:(RCTResponseSenderBlock)callback)
@@ -311,6 +326,21 @@ RCT_EXPORT_METHOD(getBloodOxygenSamples:(NSDictionary *)input callback:(RCTRespo
     [self vitals_getBloodOxygenSamples:input callback:callback];
 }
 
+RCT_EXPORT_METHOD(saveHeartRateSamples:(NSArray<NSDictionary *> *)samples callback:(RCTResponseSenderBlock)callback)
+{
+    [self vitals_saveHeartRateSamples:samples callback:callback];
+}
+
+RCT_EXPORT_METHOD(saveHeartRateVariabilitySamples:(NSArray<NSDictionary *> *)samples callback:(RCTResponseSenderBlock)callback)
+{
+    [self vitals_saveHeartRateVariabilitySamples:samples callback:callback];
+}
+
+RCT_EXPORT_METHOD(saveRestingHeartRateSamples:(NSArray<NSDictionary *> *)samples callback:(RCTResponseSenderBlock)callback)
+{
+    [self vitals_saveRestingHeartRateSamples:samples callback:callback];
+}
+
 RCT_EXPORT_METHOD(getBloodGlucoseSamples:(NSDictionary *)input callback:(RCTResponseSenderBlock)callback)
 {
     [self results_getBloodGlucoseSamples:input callback:callback];
@@ -319,6 +349,11 @@ RCT_EXPORT_METHOD(getBloodGlucoseSamples:(NSDictionary *)input callback:(RCTResp
 RCT_EXPORT_METHOD(getSleepSamples:(NSDictionary *)input callback:(RCTResponseSenderBlock)callback)
 {
     [self sleep_getSleepSamples:input callback:callback];
+}
+
+RCT_EXPORT_METHOD(saveSleepSamples:(NSArray<NSDictionary *> *)samples callback:(RCTResponseSenderBlock)callback)
+{
+    [self sleep_saveSleepSamples:samples callback:callback];
 }
 
 RCT_EXPORT_METHOD(getInfo:(NSDictionary *)input callback:(RCTResponseSenderBlock)callback)
@@ -339,6 +374,11 @@ RCT_EXPORT_METHOD(getMindfulSession:(NSDictionary *)input callback:(RCTResponseS
 RCT_EXPORT_METHOD(getWorkoutSamples:(NSDictionary *)input callback:(RCTResponseSenderBlock)callback)
 {
     [self workouts_getWorkoutSamples:input callback:callback];
+}
+
+RCT_EXPORT_METHOD(saveWorkouts:(NSArray<NSDictionary *> *)samples callback:(RCTResponseSenderBlock)callback)
+{
+    [self workouts_saveSamples:samples callback:callback];
 }
 
 - (void)isHealthKitAvailable:(RCTResponseSenderBlock)callback
